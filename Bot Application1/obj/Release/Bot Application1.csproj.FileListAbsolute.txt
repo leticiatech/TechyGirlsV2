@@ -1,0 +1,55 @@
+C:\src\TechyGirlsV2\Bot Application1\bin\Bot Application.dll.config
+C:\src\TechyGirlsV2\Bot Application1\bin\Bot Application.dll
+C:\src\TechyGirlsV2\Bot Application1\bin\Bot Application.pdb
+C:\src\TechyGirlsV2\Bot Application1\bin\Autofac.dll
+C:\src\TechyGirlsV2\Bot Application1\bin\Chronic.dll
+C:\src\TechyGirlsV2\Bot Application1\bin\Microsoft.Bot.Builder.Autofac.dll
+C:\src\TechyGirlsV2\Bot Application1\bin\Microsoft.Bot.Builder.dll
+C:\src\TechyGirlsV2\Bot Application1\bin\Microsoft.Bot.Connector.dll
+C:\src\TechyGirlsV2\Bot Application1\bin\Microsoft.IdentityModel.Logging.dll
+C:\src\TechyGirlsV2\Bot Application1\bin\Microsoft.IdentityModel.Protocol.Extensions.dll
+C:\src\TechyGirlsV2\Bot Application1\bin\Microsoft.IdentityModel.Protocols.dll
+C:\src\TechyGirlsV2\Bot Application1\bin\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\src\TechyGirlsV2\Bot Application1\bin\Microsoft.IdentityModel.Tokens.dll
+C:\src\TechyGirlsV2\Bot Application1\bin\Microsoft.Rest.ClientRuntime.dll
+C:\src\TechyGirlsV2\Bot Application1\bin\Microsoft.WindowsAzure.Configuration.dll
+C:\src\TechyGirlsV2\Bot Application1\bin\Newtonsoft.Json.dll
+C:\src\TechyGirlsV2\Bot Application1\bin\System.IdentityModel.Tokens.Jwt.dll
+C:\src\TechyGirlsV2\Bot Application1\bin\System.Net.Http.Formatting.dll
+C:\src\TechyGirlsV2\Bot Application1\bin\System.Web.Http.dll
+C:\src\TechyGirlsV2\Bot Application1\bin\System.Web.Http.WebHost.dll
+C:\src\TechyGirlsV2\Bot Application1\bin\Autofac.xml
+C:\src\TechyGirlsV2\Bot Application1\bin\Microsoft.Bot.Builder.pdb
+C:\src\TechyGirlsV2\Bot Application1\bin\Microsoft.Bot.Builder.xml
+C:\src\TechyGirlsV2\Bot Application1\bin\Microsoft.Bot.Builder.Autofac.pdb
+C:\src\TechyGirlsV2\Bot Application1\bin\Microsoft.Bot.Builder.Autofac.xml
+C:\src\TechyGirlsV2\Bot Application1\bin\Microsoft.Bot.Connector.xml
+C:\src\TechyGirlsV2\Bot Application1\bin\Microsoft.IdentityModel.Logging.xml
+C:\src\TechyGirlsV2\Bot Application1\bin\Microsoft.IdentityModel.Protocol.Extensions.xml
+C:\src\TechyGirlsV2\Bot Application1\bin\Microsoft.IdentityModel.Protocols.xml
+C:\src\TechyGirlsV2\Bot Application1\bin\Microsoft.IdentityModel.Protocols.OpenIdConnect.xml
+C:\src\TechyGirlsV2\Bot Application1\bin\Microsoft.IdentityModel.Tokens.xml
+C:\src\TechyGirlsV2\Bot Application1\bin\Microsoft.WindowsAzure.Configuration.xml
+C:\src\TechyGirlsV2\Bot Application1\bin\Newtonsoft.Json.xml
+C:\src\TechyGirlsV2\Bot Application1\bin\System.IdentityModel.Tokens.Jwt.xml
+C:\src\TechyGirlsV2\Bot Application1\bin\System.Net.Http.Formatting.xml
+C:\src\TechyGirlsV2\Bot Application1\bin\System.Web.Http.xml
+C:\src\TechyGirlsV2\Bot Application1\bin\System.Web.Http.WebHost.xml
+C:\src\TechyGirlsV2\Bot Application1\bin\ar\Microsoft.Bot.Builder.resources.dll
+C:\src\TechyGirlsV2\Bot Application1\bin\cs\Microsoft.Bot.Builder.resources.dll
+C:\src\TechyGirlsV2\Bot Application1\bin\de-dE\Microsoft.Bot.Builder.resources.dll
+C:\src\TechyGirlsV2\Bot Application1\bin\en\Microsoft.Bot.Builder.resources.dll
+C:\src\TechyGirlsV2\Bot Application1\bin\es\Microsoft.Bot.Builder.resources.dll
+C:\src\TechyGirlsV2\Bot Application1\bin\fa\Microsoft.Bot.Builder.resources.dll
+C:\src\TechyGirlsV2\Bot Application1\bin\fr\Microsoft.Bot.Builder.resources.dll
+C:\src\TechyGirlsV2\Bot Application1\bin\it\Microsoft.Bot.Builder.resources.dll
+C:\src\TechyGirlsV2\Bot Application1\bin\ja\Microsoft.Bot.Builder.resources.dll
+C:\src\TechyGirlsV2\Bot Application1\bin\nl\Microsoft.Bot.Builder.resources.dll
+C:\src\TechyGirlsV2\Bot Application1\bin\pt-BR\Microsoft.Bot.Builder.resources.dll
+C:\src\TechyGirlsV2\Bot Application1\bin\ru\Microsoft.Bot.Builder.resources.dll
+C:\src\TechyGirlsV2\Bot Application1\bin\zh-hans\Microsoft.Bot.Builder.resources.dll
+C:\src\TechyGirlsV2\Bot Application1\obj\Release\Bot Application1.csprojResolveAssemblyReference.cache
+C:\src\TechyGirlsV2\Bot Application1\obj\Release\Bot Application1.csproj.CoreCompileInputs.cache
+C:\src\TechyGirlsV2\Bot Application1\obj\Release\Bot Application1.csproj.CopyComplete
+C:\src\TechyGirlsV2\Bot Application1\obj\Release\Bot Application.dll
+C:\src\TechyGirlsV2\Bot Application1\obj\Release\Bot Application.pdb
