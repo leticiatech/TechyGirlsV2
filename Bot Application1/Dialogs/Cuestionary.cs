@@ -11,18 +11,22 @@ namespace Bot_Application1.Dialogs
     [Serializable]
     public class Cuestionary : IDialog<int>
     {
-        private string name;
+        private int finalResult;
         private int attempts = 3;
 
-        public Cuestionary(string name)
+        public Cuestionary(int fR)
         {
-            this.name = name;
+            this.finalResult = fR;
         }
 
         public async Task StartAsync(IDialogContext context)
         {
             await context.PostAsync($"Voy a hacerte unas preguntas y tu debes elegir la opcion correcta.");
             await context.PostAsync($"Empecemos");
+            await context.PostAsync($"Pregunta numero 1: Quien es la chica de HR?");
+            await context.PostAsync($"a. Leticia");
+            await context.PostAsync($"b. Mariasol");
+            await context.PostAsync($"c. Silvana");
 
             context.Wait(this.MessageReceivedAsync);
         }
@@ -31,24 +35,49 @@ namespace Bot_Application1.Dialogs
         {
             var message = await result;
 
-            int finalResult;
-
-            if (Int32.TryParse(message.Text, out finalResult) && (finalResult > 0))
+            if (message.Text.ToLower().Equals("b"))
             {
+                finalResult += 5;
                 context.Done(finalResult);
             }
             else
             {
-                --attempts;
-                if (attempts > 0)
+                //ARREGLAR LOGICA SI RESPONDE MAL
+                if (message.Text.ToLower().Equals("a"))
                 {
-                    await context.PostAsync("I'm sorry, I don't understand your reply. What is your age (e.g. '42')?");
+                    await context.PostAsync("Lo siento. Esa no es la opcion correcta. Intentalo de nuevo:");
+                    await context.PostAsync($"b. Mariasol");
+                    await context.PostAsync($"c. Silvana");
 
-                    context.Wait(this.MessageReceivedAsync);
+                    context.Wait(MessageReceivedAsync);
+
+                    if (message.Text.ToLower().Equals("b"))
+                    {
+                        finalResult += 3;
+                        context.Done(finalResult);
+                    }
+                    else
+                    {
+                        context.Done(finalResult);
+                    }
                 }
-                else
+                else if (message.Text.ToLower().Equals("c"))
                 {
-                    context.Fail(new TooManyAttemptsException("Message was not a valid age."));
+                    await context.PostAsync("Lo siento. Esa no es la opcion correcta. Intentalo de nuevo:");
+                    await context.PostAsync($"a. Leticia");
+                    await context.PostAsync($"b. Mariasol");
+
+                    context.Wait(MessageReceivedAsync);
+
+                    if (message.Text.ToLower().Equals("b"))
+                    {
+                        finalResult += 3;
+                        context.Done(finalResult);
+                    }
+                    else
+                    {
+                        context.Done(finalResult);
+                    }
                 }
             }
         }

@@ -38,6 +38,12 @@ namespace Bot_Application1.Dialogs
             context.Call(new Formalities(), FormalitiesDialogResumeAfter);
         }
 
+        private async Task SendCuestion1MessageAsync(IDialogContext context)
+        {
+
+            context.Call(new Cuestionary(finalResult), CuestionsDialogResumeAfter);
+        }
+
         private async Task NameDialogResumeAfter(IDialogContext context, IAwaitable<string> result)
         {
             try
@@ -58,7 +64,7 @@ namespace Bot_Application1.Dialogs
         {
             try
             {
-               context.Call(new Cuestionary(name), this.CuestionsDialogResumeAfter);
+               context.Call(new Cuestionary(finalResult), CuestionsDialogResumeAfter);
             }
             catch (TooManyAttemptsException)
             {

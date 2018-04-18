@@ -32,7 +32,7 @@ namespace Bot_Application1.Dialogs
             }
             else if (message.Text.ToLower().Contains("mal") || message.Text.ToLower().Contains("no muy bien"))
             {
-                await context.PostAsync("Espero poder alegrar tu un poco tu dia. Ahora vamos a jugar un juego. Si?");
+                await context.PostAsync("Espero poder alegrar un poco tu dia. Ahora vamos a jugar un juego. Si?");
                 context.Done(message.Text);
             }
             /* Else, try again by re-prompting the user. */
