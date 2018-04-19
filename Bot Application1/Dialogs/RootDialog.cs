@@ -41,7 +41,13 @@ namespace Bot_Application1.Dialogs
         private async Task SendCuestion1MessageAsync(IDialogContext context)
         {
 
-            context.Call(new Cuestionary(finalResult), CuestionsDialogResumeAfter);
+            context.Call(new Cuestionary1(finalResult), Cuestion1DialogResumeAfter);
+        }
+
+        private async Task SendCuestion2MessageAsync(IDialogContext context)
+        {
+
+            context.Call(new Cuestionary1(finalResult), Cuestion2DialogResumeAfter);
         }
 
         private async Task NameDialogResumeAfter(IDialogContext context, IAwaitable<string> result)
@@ -64,7 +70,7 @@ namespace Bot_Application1.Dialogs
         {
             try
             {
-               context.Call(new Cuestionary(finalResult), CuestionsDialogResumeAfter);
+               context.Call(new Cuestionary1(finalResult), Cuestion1DialogResumeAfter);
             }
             catch (TooManyAttemptsException)
             {
@@ -74,11 +80,32 @@ namespace Bot_Application1.Dialogs
             }
         }
 
-        private async Task CuestionsDialogResumeAfter(IDialogContext context, IAwaitable<int> result)
+        private async Task Cuestion1DialogResumeAfter(IDialogContext context, IAwaitable<int> result)
         {
             try
             {
                 this.finalResult = await result;
+
+                context.Call(new Cuestionary2(finalResult), Cuestion2DialogResumeAfter);
+                
+            }
+            catch (TooManyAttemptsException)
+            {
+                await context.PostAsync("Lo lamento, no te entendi. Tratemos de nuevo.");
+            }
+            finally
+            {
+                await this.SendCuestion1MessageAsync(context);
+            }
+        }
+
+        private async Task Cuestion2DialogResumeAfter(IDialogContext context, IAwaitable<int> result)
+        {
+            try
+            {
+                this.finalResult = await result;
+
+                context.Call(new Cuestionary2(finalResult), Cuestion2DialogResumeAfter);
 
                 await context.PostAsync($"{ name } su resultado final es { result }.");
 
@@ -89,7 +116,7 @@ namespace Bot_Application1.Dialogs
             }
             finally
             {
-                await this.SendWelcomeMessageAsync(context);
+                await this.SendCuestion1MessageAsync(context);
             }
         }
     }
