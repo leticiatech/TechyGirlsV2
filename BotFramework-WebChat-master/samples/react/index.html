@@ -34,37 +34,17 @@
     <script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
   </head>
   <body>
-    <div id="BotChatGoesHere"></div>
+    <div id="bot"></div>
 
     <script src="../../botchat.js"></script>
 
-    <script type="text/babel">
-      const params = BotChat.queryParams(location.search);
-
-      window.botchatDebug = params.debug && params.debug === 'true';
-
-      ReactDOM.render(
-        <BotChat.Chat
-          bot={{
-            id: params.botid || 'botid',
-            name: params.botname || 'botname'
-          }}
-          directLine={{
-            domain: params.domain,
-            secret: params.s,
-            token: params.t,
-            webSocket: params.webSocket && params.webSocket === 'true' // defaults to true
-          }}
-          locale={ params.locale }
-          resize="detect"
-          // sendTyping={ true }    // defaults to false. set to true to send 'typing' activities to bot (and other users) when user is typing
-          user={{
-            id: params.userid || 'userid',
-            name: params.username || 'username'
-          }}
-        />,
-        document.getElementById('BotChatGoesHere')
-      );
-    </script>
+  <script>
+      BotChat.App({
+          directLine: { secret: '0jbPWuaFzhM.cwA.Cmw.r9PpU71NHz-RZccJoyjhi-cIKHEWkI2ffs6n1-xlqFs' },
+          user: { id: 'test' },
+          bot: { id: 'TechyGirlsBot' },
+          resize: 'detect'
+      }, document.getElementById("bot"));
+  </script>
   </body>
 </html>
