@@ -9,14 +9,15 @@ namespace Bot_Application1.Dialogs
     [Serializable]
     public class RootDialog : IDialog<object>
     {
-        private string name;
-        private int finalResult;
+        private List<Group> _groups = new List<Group>();
+        private Group newGroup;
         private List<Question> _questions = GetQuestions();
 
         public async Task StartAsync(IDialogContext context)
         {
             /* Wait until the first message is received from the conversation and call MessageReceviedAsync 
              *  to process that message. */
+            newGroup = new Group();
             context.Wait(this.MessageReceivedAsync);
         }
 
@@ -37,7 +38,7 @@ namespace Bot_Application1.Dialogs
         {
             try
             {
-                this.name = await result;
+                newGroup.Name = await result;
 
                 context.Call(new Formalities(), Question1);
             }
@@ -52,7 +53,7 @@ namespace Bot_Application1.Dialogs
         {
             try
             {
-                context.Call(new Questionary(finalResult, _questions[0]), Question2);
+                context.Call(new Questionary(newGroup.TotalScore, _questions[0]), Question2);
             }
             catch (TooManyAttemptsException)
             {
@@ -63,10 +64,17 @@ namespace Bot_Application1.Dialogs
 
         private async Task Question2(IDialogContext context, IAwaitable<int> result)
         {
+            newGroup.QuestionScores.Add(
+                new QuestionScore
+                {
+                    Question = "1",
+                    Score = await result - newGroup.TotalScore
+                });
 
+            newGroup.TotalScore = await result;
             try
             {
-                context.Call(new Questionary(finalResult, _questions[1]), Question3);
+                context.Call(new Questionary(newGroup.TotalScore, _questions[1]), Question3);
             }
             catch (TooManyAttemptsException)
             {
@@ -77,12 +85,17 @@ namespace Bot_Application1.Dialogs
 
         private async Task Question3(IDialogContext context, IAwaitable<int> result)
         {
+            newGroup.QuestionScores.Add(
+                new QuestionScore
+                {
+                    Question = "2",
+                    Score = await result - newGroup.TotalScore
+                });
+
+            newGroup.TotalScore = await result;
             try
             {
-                this.finalResult = await result;
-
-                context.Call(new Questionary(finalResult, _questions[2]), Question4);
-
+                context.Call(new Questionary(newGroup.TotalScore, _questions[2]), Question4);
             }
             catch (TooManyAttemptsException)
             {
@@ -93,12 +106,17 @@ namespace Bot_Application1.Dialogs
 
         private async Task Question4(IDialogContext context, IAwaitable<int> result)
         {
+            newGroup.QuestionScores.Add(
+                new QuestionScore
+                {
+                    Question = "3",
+                    Score = await result - newGroup.TotalScore
+                });
+
+            newGroup.TotalScore = await result;
             try
             {
-                this.finalResult = await result;
-
-                context.Call(new Questionary(finalResult, _questions[3]), Question5);
-                
+                context.Call(new Questionary(newGroup.TotalScore, _questions[3]), Question5);
             }
             catch (TooManyAttemptsException)
             {
@@ -109,12 +127,17 @@ namespace Bot_Application1.Dialogs
 
         private async Task Question5(IDialogContext context, IAwaitable<int> result)
         {
+            newGroup.QuestionScores.Add(
+                new QuestionScore
+                {
+                    Question = "4",
+                    Score = await result - newGroup.TotalScore
+                });
+
+            newGroup.TotalScore = await result;
             try
             {
-                this.finalResult = await result;
-
-                context.Call(new Questionary(finalResult, _questions[4]), Question6);
-                
+                context.Call(new Questionary(newGroup.TotalScore, _questions[4]), Question6);
             }
             catch (TooManyAttemptsException)
             {
@@ -125,12 +148,17 @@ namespace Bot_Application1.Dialogs
 
         private async Task Question6(IDialogContext context, IAwaitable<int> result)
         {
+            newGroup.QuestionScores.Add(
+                new QuestionScore
+                {
+                    Question = "5",
+                    Score = await result - newGroup.TotalScore
+                });
+
+            newGroup.TotalScore = await result;
             try
             {
-                this.finalResult = await result;
-
                 context.Call(new Questionary(finalResult, _questions[5]), Question7);
-                
             }
             catch (TooManyAttemptsException)
             {
@@ -189,12 +217,17 @@ namespace Bot_Application1.Dialogs
 
         private async Task QuestionFinal(IDialogContext context, IAwaitable<int> result)
         {
+            newGroup.QuestionScores.Add(
+                new QuestionScore
+                {
+                    Question = "6",
+                    Score = await result - newGroup.TotalScore
+                });
+
+            newGroup.TotalScore = await result;
             try
             {
-                this.finalResult = await result;
-
                 context.Call(new Questionary(finalResult, _questions[9]), Farewell);
-
             }
             catch (TooManyAttemptsException)
             {
@@ -205,12 +238,21 @@ namespace Bot_Application1.Dialogs
 
         private async Task Farewell(IDialogContext context, IAwaitable<int> result)
         {
+            newGroup.QuestionScores.Add(
+                new QuestionScore
+                {
+                    Question = "7",
+                    Score = await result - newGroup.TotalScore
+                });
+
+            newGroup.TotalScore = await result;
             try
             {
-                this.finalResult = await result;
-
-                await context.PostAsync($"{ name } Gracias por participar.");
-                await context.PostAsync($"Tu resultado final es { finalResult }.");
+                await context.PostAsync($"Equipo { newGroup.Name }, gracias por participar!");
+                await context.PostAsync($"Tu resultado final es { newGroup.TotalScore }.");
+                //TODO: remove:
+                await context.PostAsync(newGroup.QuestionScores.Count.ToString());
+                //TODO: save data for group
 
                 context.Done("");
             }
