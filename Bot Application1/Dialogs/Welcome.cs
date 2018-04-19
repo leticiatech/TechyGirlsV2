@@ -25,15 +25,12 @@ namespace Bot_Application1.Dialogs
             var message = await result;
 
             /* If the message returned is a valid name, return it to the calling dialog. */
-            if ((message.Text != null) && (message.Text.Trim().Length > 0))
+            if (message.Text != null && message.Text.Trim().Length > 0 && !message.Text.Any(char.IsDigit))
             {
                 var indexSplit = message.Text.ToLower().Contains(" ") ? message.Text.LastIndexOf(" ", StringComparison.Ordinal) : 0;
                 var name = indexSplit > 0 ? message.Text.Remove(0, indexSplit) : message.Text;
 
-                if (name != null && name.Length > 2 && name.Any(char.IsDigit))
-                {
-                    await context.PostAsync($"Hola {name}.");
-                }
+                await context.PostAsync($"Hola {name}.");
                 context.Done(name);
             }
             /* Else, try again by re-prompting the user. */

@@ -127,12 +127,15 @@
     <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Dialogs\Cuestionary2.cs" />
     <Compile Include="Dialogs\Formalities.cs" />
+    <Compile Include="Dialogs\Questionary.cs" />
     <Compile Include="Dialogs\Welcome.cs" />
     <Compile Include="Dialogs\Cuestionary1.cs" />
     <Compile Include="Dialogs\RootDialog.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Option.cs" />
+    <Compile Include="Models\Question.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
