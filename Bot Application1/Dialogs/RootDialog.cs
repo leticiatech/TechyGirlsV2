@@ -98,9 +98,7 @@ namespace Bot_Application1.Dialogs
                 this.finalResult = await result;
 
                 context.Call(new Questionary(finalResult, _questions[3]), Question5);
-
-                await context.PostAsync($"{ name } su resultado final es { result }.");
-
+                
             }
             catch (TooManyAttemptsException)
             {
@@ -116,9 +114,7 @@ namespace Bot_Application1.Dialogs
                 this.finalResult = await result;
 
                 context.Call(new Questionary(finalResult, _questions[4]), Question6);
-
-                await context.PostAsync($"{ name } su resultado final es { result }.");
-
+                
             }
             catch (TooManyAttemptsException)
             {
@@ -134,9 +130,7 @@ namespace Bot_Application1.Dialogs
                 this.finalResult = await result;
 
                 context.Call(new Questionary(finalResult, _questions[5]), QuestionFinal);
-
-                await context.PostAsync($"{ name } su resultado final es { result }.");
-
+                
             }
             catch (TooManyAttemptsException)
             {
@@ -153,8 +147,6 @@ namespace Bot_Application1.Dialogs
 
                 context.Call(new Questionary(finalResult, _questions[6]), Farewell);
 
-                await context.PostAsync($"{ name } su resultado final es { result }.");
-
             }
             catch (TooManyAttemptsException)
             {
@@ -168,6 +160,10 @@ namespace Bot_Application1.Dialogs
             try
             {
                 this.finalResult = await result;
+
+                await context.PostAsync($"{ name } Gracias por participar.");
+                this.finalResult = await result;
+                await context.PostAsync($"Tu resultado final es { finalResult }.");
 
                 context.Done("");
             }
