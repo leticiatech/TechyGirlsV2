@@ -1,0 +1,20 @@
+<div class="container-fluid">
+
+	<div class="row header">
+		    <div class="col-3">
+		    	<a class="btn btn-link" [routerLink]="['']" ><img class="logo" src="../assets/logo.png"></a>
+		    </div>
+		    <div class="col-9">
+		    	<ul class="list-unstyled">
+		    		<li><a class="btn btn-link" [routerLink]="['registro']">Registrar</a></li>
+		    		<li><a class="btn btn-link" [routerLink]="['premio']">Ver premio</a></li>
+		    		<li><a class="btn btn-link" [routerLink]="['consulta']">Consultar Nro</a></li>  
+			    </ul>
+		    </div>
+	</div>
+
+	<router-outlet></router-outlet>
+
+</div>
+
+
