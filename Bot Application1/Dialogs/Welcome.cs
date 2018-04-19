@@ -15,7 +15,7 @@ namespace Bot_Application1.Dialogs
 
         public async Task StartAsync(IDialogContext context)
         {
-            await context.PostAsync("Hola, Soy Ada. Como es tu nombre?");
+            await context.PostAsync("Hola, soy Ada. Como es tu nombre?");
 
             context.Wait(this.MessageReceivedAsync);
         }
@@ -27,10 +27,10 @@ namespace Bot_Application1.Dialogs
             /* If the message returned is a valid name, return it to the calling dialog. */
             if ((message.Text != null) && (message.Text.Trim().Length > 0))
             {
-                
-                    var indexSplit = message.Text.ToLower().Contains(" ") ? message.Text.LastIndexOf(" ") : 0;
-                    var name = indexSplit > 0 ? message.Text.Remove(0, indexSplit) : message.Text;
-                if (name != null && name.Length > 0)
+                var indexSplit = message.Text.ToLower().Contains(" ") ? message.Text.LastIndexOf(" ", StringComparison.Ordinal) : 0;
+                var name = indexSplit > 0 ? message.Text.Remove(0, indexSplit) : message.Text;
+
+                if (name != null && name.Length > 2 && name.Any(char.IsDigit))
                 {
                     await context.PostAsync($"Hola {name}.");
                 }
