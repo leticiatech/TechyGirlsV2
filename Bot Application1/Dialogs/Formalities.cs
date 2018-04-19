@@ -15,7 +15,7 @@ namespace Bot_Application1.Dialogs
 
         public async Task StartAsync(IDialogContext context)
         {
-            await context.PostAsync("Como estas?");
+            await context.PostAsync("Como están?");
 
             context.Wait(MessageReceivedAsync);
         }
@@ -32,7 +32,7 @@ namespace Bot_Application1.Dialogs
             }
             else if (message.Text.ToLower().Contains("no") || message.Text.ToLower().Contains("mal"))
             {
-                await context.PostAsync("Espero poder alegrar un poco tu dia. Ahora vamos a jugar un juego. Si?");
+                await context.PostAsync("Espero poder alegrar un poco su dia. Ahora vamos a jugar un juego. Si?");
                 context.Done(message.Text);
             }
             /* Else, try again by re-prompting the user. */
@@ -41,7 +41,7 @@ namespace Bot_Application1.Dialogs
                 --attempts;
                 if (attempts > 0)
                 {
-                    await context.PostAsync("No te entiendo. Como estas?");
+                    await context.PostAsync("No entiendo. Como están?");
 
                     context.Wait(MessageReceivedAsync);
                 }
@@ -49,7 +49,7 @@ namespace Bot_Application1.Dialogs
                 {
                     /* Fails the current dialog, removes it from the dialog stack, and returns the exception to the 
                         parent/calling dialog. */
-                    context.Fail(new TooManyAttemptsException("Disculpa, pero no entendi tu nombre."));
+                    context.Fail(new TooManyAttemptsException("Disculpa, pero no entendi!"));
                 }
             }
         }

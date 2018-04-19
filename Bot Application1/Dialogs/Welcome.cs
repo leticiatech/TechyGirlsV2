@@ -15,7 +15,7 @@ namespace Bot_Application1.Dialogs
 
         public async Task StartAsync(IDialogContext context)
         {
-            await context.PostAsync("Hola, soy Ada. Como es tu nombre?");
+            await context.PostAsync("Hola, mi nombre es Ada. Escribe un nombre para tu equipo:");
 
             context.Wait(this.MessageReceivedAsync);
         }
@@ -30,7 +30,7 @@ namespace Bot_Application1.Dialogs
                 var indexSplit = message.Text.ToLower().Contains(" ") ? message.Text.LastIndexOf(" ", StringComparison.Ordinal) : 0;
                 var name = indexSplit > 0 ? message.Text.Remove(0, indexSplit) : message.Text;
 
-                await context.PostAsync($"Hola {name}.");
+                await context.PostAsync($"Bienvenidas {name}!");
                 context.Done(name);
             }
             /* Else, try again by re-prompting the user. */
@@ -39,7 +39,7 @@ namespace Bot_Application1.Dialogs
                 --attempts;
                 if (attempts > 0)
                 {
-                    await context.PostAsync("Lo siento. No te entiendo. Como es tu nombre?");
+                    await context.PostAsync("Lo siento, no entiendo. ¿Como es el nombre del equipo?");
 
                     context.Wait(this.MessageReceivedAsync);
                 }
@@ -47,7 +47,7 @@ namespace Bot_Application1.Dialogs
                 {
                     /* Fails the current dialog, removes it from the dialog stack, and returns the exception to the 
                         parent/calling dialog. */
-                    context.Fail(new TooManyAttemptsException("Disculpa, pero no entendi tu nombre."));
+                    context.Fail(new TooManyAttemptsException("Disculpa, pero no entendí el nombre"));
                 }
             }
         }

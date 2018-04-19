@@ -11,14 +11,14 @@ namespace Bot_Application1.Dialogs
     [Serializable]
     public class Questionary : IDialog<int>
     {
-        private int _finalResult;
         private const int MaxPoints = 5;
         private const int MinPoints = 3;
         private readonly Question _question;
+        private int _totalScore;
 
-        public Questionary(int fR, Question question)
+        public Questionary(int totalScore, Question question)
         {
-            _finalResult = fR;
+            _totalScore = totalScore;
             _question = question;
         }
 
@@ -38,16 +38,17 @@ namespace Bot_Application1.Dialogs
         {
             var message = await result;
 
-            //Correct in First try
             if (!IsValidOption(message.Text))
             {
                 await context.PostAsync("Oops! Intenta escribiendo la letra de una opción válida");
+                context.Wait(this.MessageReceivedAsync);
             }
 
+            //Correct in First try
             if (IsCorrect(message.Text))
             {
-                _finalResult += MaxPoints;
-                context.Done(_finalResult);
+                _totalScore += MaxPoints;
+                context.Done(_totalScore);
             }
             else
             {
@@ -67,13 +68,14 @@ namespace Bot_Application1.Dialogs
             //Correct in Second try
             if (IsCorrect(message.Text))
             {
-                _finalResult += MinPoints;
-                context.Done(_finalResult);
+                _totalScore += MinPoints;
+                context.Done(_totalScore);
             }
             else
             {
                 //Incorrect!
-                context.Done(_finalResult);
+                _totalScore += 0;
+                context.Done(_totalScore);
             }
         }
 
