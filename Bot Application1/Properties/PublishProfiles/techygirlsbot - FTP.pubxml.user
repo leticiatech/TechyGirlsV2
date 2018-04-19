@@ -7,5 +7,122 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAbIBV0bS8502xlOMACBAzUQAAAAACAAAAAAADZgAAwAAAABAAAAA8SjBLPiGLX1smvrk8DNp+AAAAAASAAACgAAAAEAAAAKn3DOiSQ+hpQcwiP/q9/oaAAAAAMhmA6w1DJKnZpKpBgkK3aD/jEBCAxo2dBhJTtC/RruB6eGqN7UsvYBvMEMFt7ktfu0JKCf/OvVzZbJp9uPJtcyumXEGH/8/FF4906Q1b0Wx+97y8QfJF7cjic/8Lr4cz7iQ73nWW9/mOImeo8Xm65sanuB3epZIchU7Sfy/GyhoUAAAA9UZxkkv2OA1BPhGUsIl5aXQx0Lc=</EncryptedPassword>
+    <_PublishTargetUrl>ftp://waws-prod-blu-045.ftp.azurewebsites.windows.net/site/wwwroot</_PublishTargetUrl>
   </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/ar/Microsoft.Bot.Builder.resources.dll">
+      <publishTime>04/19/2018 10:59:12</publishTime>
+    </File>
+    <File Include="bin/Autofac.dll">
+      <publishTime>04/19/2018 10:59:12</publishTime>
+    </File>
+    <File Include="bin/Bot Application.dll">
+      <publishTime>04/19/2018 13:11:04</publishTime>
+    </File>
+    <File Include="bin/Bot Application.pdb">
+      <publishTime>04/19/2018 13:11:04</publishTime>
+    </File>
+    <File Include="bin/Chronic.dll">
+      <publishTime>04/19/2018 10:59:12</publishTime>
+    </File>
+    <File Include="bin/cs/Microsoft.Bot.Builder.resources.dll">
+      <publishTime>04/19/2018 10:59:12</publishTime>
+    </File>
+    <File Include="bin/de-dE/Microsoft.Bot.Builder.resources.dll">
+      <publishTime>04/19/2018 10:59:12</publishTime>
+    </File>
+    <File Include="bin/en/Microsoft.Bot.Builder.resources.dll">
+      <publishTime>04/19/2018 10:59:12</publishTime>
+    </File>
+    <File Include="bin/es/Microsoft.Bot.Builder.resources.dll">
+      <publishTime>04/19/2018 10:59:12</publishTime>
+    </File>
+    <File Include="bin/fa/Microsoft.Bot.Builder.resources.dll">
+      <publishTime>04/19/2018 10:59:12</publishTime>
+    </File>
+    <File Include="bin/fr/Microsoft.Bot.Builder.resources.dll">
+      <publishTime>04/19/2018 10:59:12</publishTime>
+    </File>
+    <File Include="bin/it/Microsoft.Bot.Builder.resources.dll">
+      <publishTime>04/19/2018 10:59:12</publishTime>
+    </File>
+    <File Include="bin/ja/Microsoft.Bot.Builder.resources.dll">
+      <publishTime>04/19/2018 10:59:12</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Bot.Builder.Autofac.dll">
+      <publishTime>04/19/2018 10:59:12</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Bot.Builder.Autofac.pdb">
+      <publishTime>04/19/2018 10:59:12</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Bot.Builder.dll">
+      <publishTime>04/19/2018 10:59:12</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Bot.Builder.pdb">
+      <publishTime>04/19/2018 10:59:12</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Bot.Connector.dll">
+      <publishTime>04/19/2018 10:59:12</publishTime>
+    </File>
+    <File Include="bin/Microsoft.IdentityModel.Logging.dll">
+      <publishTime>04/19/2018 10:59:12</publishTime>
+    </File>
+    <File Include="bin/Microsoft.IdentityModel.Protocol.Extensions.dll">
+      <publishTime>04/19/2018 10:59:12</publishTime>
+    </File>
+    <File Include="bin/Microsoft.IdentityModel.Protocols.dll">
+      <publishTime>04/19/2018 10:59:12</publishTime>
+    </File>
+    <File Include="bin/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll">
+      <publishTime>04/19/2018 10:59:12</publishTime>
+    </File>
+    <File Include="bin/Microsoft.IdentityModel.Tokens.dll">
+      <publishTime>04/19/2018 10:59:12</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Rest.ClientRuntime.dll">
+      <publishTime>04/19/2018 10:59:12</publishTime>
+    </File>
+    <File Include="bin/Microsoft.WindowsAzure.Configuration.dll">
+      <publishTime>04/19/2018 10:59:12</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>04/19/2018 10:59:12</publishTime>
+    </File>
+    <File Include="bin/nl/Microsoft.Bot.Builder.resources.dll">
+      <publishTime>04/19/2018 10:59:12</publishTime>
+    </File>
+    <File Include="bin/pt-BR/Microsoft.Bot.Builder.resources.dll">
+      <publishTime>04/19/2018 10:59:12</publishTime>
+    </File>
+    <File Include="bin/ru/Microsoft.Bot.Builder.resources.dll">
+      <publishTime>04/19/2018 10:59:12</publishTime>
+    </File>
+    <File Include="bin/System.IdentityModel.Tokens.Jwt.dll">
+      <publishTime>04/19/2018 10:59:12</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Formatting.dll">
+      <publishTime>04/19/2018 10:59:12</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.dll">
+      <publishTime>04/19/2018 10:59:12</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.WebHost.dll">
+      <publishTime>04/19/2018 10:59:12</publishTime>
+    </File>
+    <File Include="bin/zh-hans/Microsoft.Bot.Builder.resources.dll">
+      <publishTime>04/19/2018 10:59:12</publishTime>
+    </File>
+    <File Include="default.htm">
+      <publishTime>04/19/2018 10:59:12</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>04/19/2018 10:59:12</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>04/19/2018 10:59:12</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>04/19/2018 13:11:09</publishTime>
+    </File>
+  </ItemGroup>
 </Project>
