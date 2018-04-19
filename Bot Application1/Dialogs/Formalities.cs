@@ -25,12 +25,12 @@ namespace Bot_Application1.Dialogs
             var message = await result;
 
             /* If the message returned is a valid name, return it to the calling dialog. */
-            if (!message.Text.ToLower().Contains("no") && message.Text.ToLower().Contains("bien") || message.Text.ToLower().Contains("genial"))
+            if (!message.Text.ToLower().Contains("no") && (message.Text.ToLower().Contains("bien") || message.Text.ToLower().Contains("genial")))
             {
                 await context.PostAsync("Que bueno! Me alegro. Ahora vamos a jugar un juego. Si?");
                 context.Done(message.Text);
             }
-            else if (message.Text.ToLower().Contains("mal") || message.Text.ToLower().Contains("no muy bien"))
+            else if (message.Text.ToLower().Contains("no") || message.Text.ToLower().Contains("mal"))
             {
                 await context.PostAsync("Espero poder alegrar un poco tu dia. Ahora vamos a jugar un juego. Si?");
                 context.Done(message.Text);
