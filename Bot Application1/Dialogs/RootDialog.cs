@@ -158,7 +158,7 @@ namespace Bot_Application1.Dialogs
             newGroup.TotalScore = await result;
             try
             {
-                context.Call(new Questionary(finalResult, _questions[5]), Question7);
+                context.Call(new Questionary(newGroup.TotalScore, _questions[5]), Question7);
             }
             catch (TooManyAttemptsException)
             {
@@ -171,9 +171,8 @@ namespace Bot_Application1.Dialogs
         {
             try
             {
-                this.finalResult = await result;
 
-                context.Call(new Questionary(finalResult, _questions[6]), Question8);
+                context.Call(new Questionary(newGroup.TotalScore, _questions[6]), Question8);
 
             }
             catch (TooManyAttemptsException)
@@ -187,9 +186,8 @@ namespace Bot_Application1.Dialogs
         {
             try
             {
-                this.finalResult = await result;
 
-                context.Call(new Questionary(finalResult, _questions[7]), Question9);
+                context.Call(new Questionary(newGroup.TotalScore, _questions[7]), Question9);
 
             }
             catch (TooManyAttemptsException)
@@ -203,9 +201,8 @@ namespace Bot_Application1.Dialogs
         {
             try
             {
-                this.finalResult = await result;
 
-                context.Call(new Questionary(finalResult, _questions[8]), QuestionFinal);
+                context.Call(new Questionary(newGroup.TotalScore, _questions[8]), QuestionFinal);
 
             }
             catch (TooManyAttemptsException)
@@ -227,7 +224,7 @@ namespace Bot_Application1.Dialogs
             newGroup.TotalScore = await result;
             try
             {
-                context.Call(new Questionary(finalResult, _questions[9]), Farewell);
+                context.Call(new Questionary(newGroup.TotalScore, _questions[9]), Farewell);
             }
             catch (TooManyAttemptsException)
             {
