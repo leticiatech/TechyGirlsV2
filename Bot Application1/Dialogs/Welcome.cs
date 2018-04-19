@@ -15,7 +15,7 @@ namespace Bot_Application1.Dialogs
 
         public async Task StartAsync(IDialogContext context)
         {
-            await context.PostAsync("Hola, soy Ada. Como es tu nombre?");
+            await context.PostAsync("Hola, soy Ada. ¿Como te llamas?");
 
             context.Wait(this.MessageReceivedAsync);
         }
@@ -30,7 +30,7 @@ namespace Bot_Application1.Dialogs
                 var indexSplit = message.Text.ToLower().Contains(" ") ? message.Text.LastIndexOf(" ", StringComparison.Ordinal) : 0;
                 var name = indexSplit > 0 ? message.Text.Remove(0, indexSplit) : message.Text;
 
-                await context.PostAsync($"Hola {name}.");
+                await context.PostAsync($"Hola {name}. Que lindo nombre!");
                 context.Done(name);
             }
             /* Else, try again by re-prompting the user. */
@@ -39,7 +39,7 @@ namespace Bot_Application1.Dialogs
                 --attempts;
                 if (attempts > 0)
                 {
-                    await context.PostAsync("Lo siento. No te entiendo. Como es tu nombre?");
+                    await context.PostAsync("Lo siento. No te entiendo. ¿Como es tu nombre?");
 
                     context.Wait(this.MessageReceivedAsync);
                 }
