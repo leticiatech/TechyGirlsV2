@@ -25,11 +25,11 @@ namespace Bot_Application1.Dialogs
             var message = await result;
 
             /* If the message returned is a valid name, return it to the calling dialog. */
-            if (message.Text.ToLower().Contains("llamo") || message.Text.ToLower().Contains("nombre es"))
+            if ((message.Text != null) && (message.Text.Trim().Length > 0))
             {
                 
-                    var indexSplit = message.Text.LastIndexOf(" ");
-                    var name = message.Text.Remove(0, indexSplit);
+                    var indexSplit = message.Text.ToLower().Contains(" ") ? message.Text.LastIndexOf(" ") : 0;
+                    var name = indexSplit > 0 ? message.Text.Remove(0, indexSplit) : message.Text;
                 if (name != null && name.Length > 0)
                 {
                     await context.PostAsync($"Hola {name}.");
