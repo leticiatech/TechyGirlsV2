@@ -166,6 +166,51 @@ namespace Bot_Application1.Dialogs
             }
         }
 
+        private async Task Question7(IDialogContext context, IAwaitable<int> result)
+        {
+            try
+            {
+
+                context.Call(new Questionary(newGroup.TotalScore, _questions[6]), Question8);
+
+            }
+            catch (TooManyAttemptsException)
+            {
+                await FailMessage(context);
+                await Question7(context, result);
+            }
+        }
+
+        private async Task Question8(IDialogContext context, IAwaitable<int> result)
+        {
+            try
+            {
+
+                context.Call(new Questionary(newGroup.TotalScore, _questions[7]), Question9);
+
+            }
+            catch (TooManyAttemptsException)
+            {
+                await FailMessage(context);
+                await Question8(context, result);
+            }
+        }
+
+        private async Task Question9(IDialogContext context, IAwaitable<int> result)
+        {
+            try
+            {
+
+                context.Call(new Questionary(newGroup.TotalScore, _questions[8]), QuestionFinal);
+
+            }
+            catch (TooManyAttemptsException)
+            {
+                await FailMessage(context);
+                await Question9(context, result);
+            }
+        }
+
         private async Task QuestionFinal(IDialogContext context, IAwaitable<int> result)
         {
             group.QuestionScores.Add(
