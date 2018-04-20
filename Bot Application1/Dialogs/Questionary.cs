@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Bot_Application1.Models;
+using Bot_Application1.Storage;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
 
@@ -11,15 +12,18 @@ namespace Bot_Application1.Dialogs
     [Serializable]
     public class Questionary : IDialog<int>
     {
+        private readonly string _groupName;
+        private readonly Question _question;
+
         private const int MaxPoints = 5;
         private const int MinPoints = 3;
-        private readonly Question _question;
         private int _totalScore;
 
-        public Questionary(int totalScore, Question question)
+        public Questionary(int totalScore, Question question, string groupName)
         {
             _totalScore = totalScore;
             _question = question;
+            _groupName = groupName;
         }
 
         public async Task StartAsync(IDialogContext context)
@@ -40,14 +44,15 @@ namespace Bot_Application1.Dialogs
 
             if (!IsValidOption(message.Text))
             {
-                await context.PostAsync("Oops! Intenta escribiendo la letra de una opción válida");
-                context.Wait(this.MessageReceivedAsync);
+                await context.PostAsync("Oops! Intenta escribiendo la letra de una opción válida:");
+                return;
             }
 
             //Correct in First try
             if (IsCorrect(message.Text))
             {
                 _totalScore += MaxPoints;
+                await SaveScore(MaxPoints);
                 context.Done(_totalScore);
             }
             else
@@ -69,14 +74,24 @@ namespace Bot_Application1.Dialogs
             if (IsCorrect(message.Text))
             {
                 _totalScore += MinPoints;
+                await SaveScore(MinPoints);
                 context.Done(_totalScore);
             }
             else
             {
                 //Incorrect!
                 _totalScore += 0;
+                await SaveScore(0);
                 context.Done(_totalScore);
             }
+        }
+
+        private async Task SaveScore(int score)
+        {
+            var groupentity = new GroupTableEntity(_groupName, _question.Number.ToString()) {Score = score};
+
+            var sm = new StorageManager();
+            await sm.StoreEntity(groupentity);
         }
 
         private bool IsValidOption(string received)

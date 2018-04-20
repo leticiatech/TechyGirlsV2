@@ -9,15 +9,14 @@ namespace Bot_Application1.Dialogs
     [Serializable]
     public class RootDialog : IDialog<object>
     {
-        private List<Group> _groups = new List<Group>();
-        private Group newGroup;
-        private List<Question> _questions = GetQuestions();
+        private Group group;
+        private readonly List<Question> _questions = QuestionsFactory.GetQuestions();
 
         public async Task StartAsync(IDialogContext context)
         {
             /* Wait until the first message is received from the conversation and call MessageReceviedAsync 
              *  to process that message. */
-            newGroup = new Group();
+            group = new Group();
             context.Wait(this.MessageReceivedAsync);
         }
 
@@ -38,7 +37,7 @@ namespace Bot_Application1.Dialogs
         {
             try
             {
-                newGroup.Name = await result;
+                group.Name = await result;
 
                 context.Call(new Formalities(), Question1);
             }
@@ -53,7 +52,7 @@ namespace Bot_Application1.Dialogs
         {
             try
             {
-                context.Call(new Questionary(newGroup.TotalScore, _questions[0]), Question2);
+                context.Call(new Questionary(group.TotalScore, _questions[0], group.Name), Question2);
             }
             catch (TooManyAttemptsException)
             {
@@ -64,17 +63,17 @@ namespace Bot_Application1.Dialogs
 
         private async Task Question2(IDialogContext context, IAwaitable<int> result)
         {
-            newGroup.QuestionScores.Add(
+            group.QuestionScores.Add(
                 new QuestionScore
                 {
                     Question = "1",
-                    Score = await result - newGroup.TotalScore
+                    Score = await result - group.TotalScore
                 });
 
-            newGroup.TotalScore = await result;
+            group.TotalScore = await result;
             try
             {
-                context.Call(new Questionary(newGroup.TotalScore, _questions[1]), Question3);
+                context.Call(new Questionary(group.TotalScore, _questions[1], group.Name), Question3);
             }
             catch (TooManyAttemptsException)
             {
@@ -85,17 +84,17 @@ namespace Bot_Application1.Dialogs
 
         private async Task Question3(IDialogContext context, IAwaitable<int> result)
         {
-            newGroup.QuestionScores.Add(
+            group.QuestionScores.Add(
                 new QuestionScore
                 {
                     Question = "2",
-                    Score = await result - newGroup.TotalScore
+                    Score = await result - group.TotalScore
                 });
 
-            newGroup.TotalScore = await result;
+            group.TotalScore = await result;
             try
             {
-                context.Call(new Questionary(newGroup.TotalScore, _questions[2]), Question4);
+                context.Call(new Questionary(group.TotalScore, _questions[2], group.Name), Question4);
             }
             catch (TooManyAttemptsException)
             {
@@ -106,17 +105,17 @@ namespace Bot_Application1.Dialogs
 
         private async Task Question4(IDialogContext context, IAwaitable<int> result)
         {
-            newGroup.QuestionScores.Add(
+            group.QuestionScores.Add(
                 new QuestionScore
                 {
                     Question = "3",
-                    Score = await result - newGroup.TotalScore
+                    Score = await result - group.TotalScore
                 });
 
-            newGroup.TotalScore = await result;
+            group.TotalScore = await result;
             try
             {
-                context.Call(new Questionary(newGroup.TotalScore, _questions[3]), Question5);
+                context.Call(new Questionary(group.TotalScore, _questions[3], group.Name), Question5);
             }
             catch (TooManyAttemptsException)
             {
@@ -127,17 +126,17 @@ namespace Bot_Application1.Dialogs
 
         private async Task Question5(IDialogContext context, IAwaitable<int> result)
         {
-            newGroup.QuestionScores.Add(
+            group.QuestionScores.Add(
                 new QuestionScore
                 {
                     Question = "4",
-                    Score = await result - newGroup.TotalScore
+                    Score = await result - group.TotalScore
                 });
 
-            newGroup.TotalScore = await result;
+            group.TotalScore = await result;
             try
             {
-                context.Call(new Questionary(newGroup.TotalScore, _questions[4]), Question6);
+                context.Call(new Questionary(group.TotalScore, _questions[4], group.Name), Question6);
             }
             catch (TooManyAttemptsException)
             {
@@ -148,17 +147,17 @@ namespace Bot_Application1.Dialogs
 
         private async Task Question6(IDialogContext context, IAwaitable<int> result)
         {
-            newGroup.QuestionScores.Add(
+            group.QuestionScores.Add(
                 new QuestionScore
                 {
                     Question = "5",
-                    Score = await result - newGroup.TotalScore
+                    Score = await result - group.TotalScore
                 });
 
-            newGroup.TotalScore = await result;
+            group.TotalScore = await result;
             try
             {
-                context.Call(new Questionary(newGroup.TotalScore, _questions[5]), QuestionFinal);
+                context.Call(new Questionary(group.TotalScore, _questions[5], group.Name), QuestionFinal);
             }
             catch (TooManyAttemptsException)
             {
@@ -169,17 +168,17 @@ namespace Bot_Application1.Dialogs
 
         private async Task QuestionFinal(IDialogContext context, IAwaitable<int> result)
         {
-            newGroup.QuestionScores.Add(
+            group.QuestionScores.Add(
                 new QuestionScore
                 {
                     Question = "6",
-                    Score = await result - newGroup.TotalScore
+                    Score = await result - group.TotalScore
                 });
 
-            newGroup.TotalScore = await result;
+            group.TotalScore = await result;
             try
             {
-                context.Call(new Questionary(newGroup.TotalScore, _questions[6]), Farewell);
+                context.Call(new Questionary(group.TotalScore, _questions[6], group.Name), Farewell);
             }
             catch (TooManyAttemptsException)
             {
@@ -190,22 +189,21 @@ namespace Bot_Application1.Dialogs
 
         private async Task Farewell(IDialogContext context, IAwaitable<int> result)
         {
-            newGroup.QuestionScores.Add(
+            group.QuestionScores.Add(
                 new QuestionScore
                 {
                     Question = "7",
-                    Score = await result - newGroup.TotalScore
+                    Score = await result - group.TotalScore
                 });
 
-            newGroup.TotalScore = await result;
+            group.TotalScore = await result;
             try
             {
-                await context.PostAsync($"Equipo { newGroup.Name }, gracias por participar!");
-                await context.PostAsync($"Tu resultado final es { newGroup.TotalScore }.");
-                //TODO: remove:
-                await context.PostAsync(newGroup.QuestionScores.Count.ToString());
+                await context.PostAsync($"Tu resultado final es { group.TotalScore }.");
+                await context.PostAsync($"{ group.Name }, gracias por participar!");
 
                 //TODO: save data for group
+
 
                 context.Done("");
             }
@@ -216,90 +214,10 @@ namespace Bot_Application1.Dialogs
         }
 
         //FAIL MESSAGE
-
         private async Task FailMessage(IDialogContext context)
         {
             await context.PostAsync("Lo lamento, no te entendi. Tratemos de nuevo.");
         }
-
-        // QUESTIONS FACTORY
-        private static List<Question> GetQuestions()
-        {
-            var result = new List<Question>
-            {
-                new Question
-                {
-                    Text = "1. ¿Quién es la chica de HR?",
-                    Options = new List<Option>
-                    {
-                        new Option {Text = "Leticia", OptionLetter = "a", Correct = false},
-                        new Option {Text = "Mariasol", OptionLetter = "b",  Correct = true},
-                        new Option {Text = "Mavi", OptionLetter = "c",  Correct = true}
-                    }
-                },
-                new Question
-                {
-                    Text = "2. ¿Cómo es el nombre de la empresa?",
-                    Options = new List<Option>
-                    {
-                        new Option {Text = "Onetree", OptionLetter = "a", Correct = true},
-                        new Option {Text = "Altimetrik", OptionLetter = "b", Correct = false},
-                        new Option {Text = "Takeoff", OptionLetter = "c", Correct = false}
-                    }
-                },
-                new Question
-                {
-                    Text = "3. ¿Cómo es el nombre de la empresa?",
-                    Options = new List<Option>
-                    {
-                        new Option {Text = "Onetree", OptionLetter = "a", Correct = true},
-                        new Option {Text = "Altimetrik", OptionLetter = "b", Correct = false},
-                        new Option {Text = "Takeoff", OptionLetter = "c", Correct = false}
-                    }
-                },
-                new Question
-                {
-                    Text = "4. ¿Cómo es el nombre de la empresa?",
-                    Options = new List<Option>
-                    {
-                        new Option {Text = "Onetree", OptionLetter = "a", Correct = true},
-                        new Option {Text = "Altimetrik", OptionLetter = "b", Correct = false},
-                        new Option {Text = "Takeoff", OptionLetter = "c", Correct = false}
-                    }
-                },
-                new Question
-                {
-                    Text = "5. ¿Cómo es el nombre de la empresa?",
-                    Options = new List<Option>
-                    {
-                        new Option {Text = "Onetree", OptionLetter = "a", Correct = true},
-                        new Option {Text = "Altimetrik", OptionLetter = "b", Correct = false},
-                        new Option {Text = "Takeoff", OptionLetter = "c", Correct = false}
-                    }
-                },
-                new Question
-                {
-                    Text = "6. ¿Cómo es el nombre de la empresa?",
-                    Options = new List<Option>
-                    {
-                        new Option {Text = "Onetree", OptionLetter = "a", Correct = true},
-                        new Option {Text = "Altimetrik", OptionLetter = "b", Correct = false},
-                        new Option {Text = "Takeoff", OptionLetter = "c", Correct = false}
-                    }
-                },
-                new Question
-                {
-                    Text = "7. ¿Cómo es el nombre de la empresa?",
-                    Options = new List<Option>
-                    {
-                        new Option {Text = "Onetree", OptionLetter = "a", Correct = true},
-                        new Option {Text = "Altimetrik", OptionLetter = "b", Correct = false},
-                        new Option {Text = "Takeoff", OptionLetter = "c", Correct = false}
-                    }
-                }
-            };
-
-            return result;
-        }
+        
     }
 }

@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,6 +7,7 @@ namespace Bot_Application1.Models
     [Serializable]
     public class Question
     {
+        public int Number { get; set; }
         public string Text { get; set; }
         public List<Option> Options { get; set; }
 

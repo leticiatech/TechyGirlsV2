@@ -108,3 +108,8 @@ C:\src\TechyGirlsV2\Bot Application1\obj\Debug\Bot Application1.csproj.CoreCompi
 C:\src\TechyGirlsV2\Bot Application1\obj\Debug\Bot Application1.csproj.CopyComplete
 C:\src\TechyGirlsV2\Bot Application1\obj\Debug\Bot Application.dll
 C:\src\TechyGirlsV2\Bot Application1\obj\Debug\Bot Application.pdb
+C:\src\TechyGirlsV2\Bot Application1\bin\Microsoft.Azure.KeyVault.Core.dll
+C:\src\TechyGirlsV2\Bot Application1\bin\Microsoft.WindowsAzure.Storage.dll
+C:\src\TechyGirlsV2\Bot Application1\bin\Microsoft.Azure.KeyVault.Core.xml
+C:\src\TechyGirlsV2\Bot Application1\bin\Microsoft.WindowsAzure.Storage.pdb
+C:\src\TechyGirlsV2\Bot Application1\bin\Microsoft.WindowsAzure.Storage.xml
