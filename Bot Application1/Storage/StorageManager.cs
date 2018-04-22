@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Azure;
@@ -7,6 +8,7 @@ using Microsoft.WindowsAzure.Storage.Table;
 
 namespace Bot_Application1.Storage
 {
+    [Serializable]
     public class StorageManager: IStorageManager
     {
         public async Task StoreEntity(ITableEntity entity, string tableName)
@@ -46,6 +48,7 @@ namespace Bot_Application1.Storage
             var query = new TableQuery<GroupTableEntity>().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, "Name"));
 
             return table.ExecuteQuery(query).Select(n => n.RowKey).ToList();
+            //return table.ExecuteQuery(query).Where(t => !t.RowKey.ToLower().Contains("test")).Select(n => n.RowKey).ToList();
 
         }
 

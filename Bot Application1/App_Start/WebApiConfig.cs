@@ -1,6 +1,8 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System.Web.Http;
+using Bot_Application1.App_Start;
+using Unity.AspNet.WebApi;
 
 namespace Bot_Application1
 {
@@ -20,7 +22,7 @@ namespace Bot_Application1
             };
 
             // Web API configuration and services
-            //config.DependencyResolver = new(UnityConfig.GetConfiguredContainer());
+            config.DependencyResolver = new UnityDependencyResolver(UnityConfig.GetConfiguredContainer());
 
             // Web API routes
             config.MapHttpAttributeRoutes();

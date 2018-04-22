@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using Bot_Application1.Storage;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
 
@@ -10,6 +11,13 @@ namespace Bot_Application1.Controllers
     [BotAuthentication]
     public class MessagesController : ApiController
     {
+        private readonly IDataAccess _dataAccess;
+
+        public MessagesController(IDataAccess dataAccess)
+        {
+            _dataAccess = dataAccess;
+        }
+
         /// <summary>
         /// POST: api/Messages
         /// Receive a message from a user and reply to it
@@ -18,7 +26,7 @@ namespace Bot_Application1.Controllers
         {
             if (activity.Type == ActivityTypes.Message)
             {
-                await Conversation.SendAsync(activity, () => new Dialogs.RootDialog());
+                await Conversation.SendAsync(activity, () => new Dialogs.RootDialog(_dataAccess));
             }
             else
             {
