@@ -2,21 +2,24 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Bot_Application1.Models;
+using Bot_Application1.Storage;
 using Microsoft.Bot.Builder.Dialogs;
+using Microsoft.WindowsAzure.Storage.Table;
 
 namespace Bot_Application1.Dialogs
 {
     [Serializable]
     public class RootDialog : IDialog<object>
     {
-        private Group group;
+        private string groupName;
+        private int totalScore;
         private readonly List<Question> _questions = QuestionsFactory.GetQuestions();
 
         public async Task StartAsync(IDialogContext context)
         {
             /* Wait until the first message is received from the conversation and call MessageReceviedAsync 
              *  to process that message. */
-            group = new Group();
+            totalScore = 0;
             context.Wait(this.MessageReceivedAsync);
         }
 
@@ -29,7 +32,6 @@ namespace Bot_Application1.Dialogs
 
         private async Task SendWelcomeMessageAsync(IDialogContext context)
         {
-
             context.Call(new Welcome(), FormalitiesDialog);
         }
 
@@ -37,7 +39,7 @@ namespace Bot_Application1.Dialogs
         {
             try
             {
-                group.Name = await result;
+                groupName = await result;
 
                 context.Call(new Formalities(), Question1);
             }
@@ -52,7 +54,7 @@ namespace Bot_Application1.Dialogs
         {
             try
             {
-                context.Call(new Questionary(group.TotalScore, _questions[0], group.Name), Question2);
+                context.Call(new Questionary(totalScore, _questions[0], groupName), Question2);
             }
             catch (TooManyAttemptsException)
             {
@@ -63,17 +65,10 @@ namespace Bot_Application1.Dialogs
 
         private async Task Question2(IDialogContext context, IAwaitable<int> result)
         {
-            group.QuestionScores.Add(
-                new QuestionScore
-                {
-                    Question = "1",
-                    Score = await result - group.TotalScore
-                });
-
-            group.TotalScore = await result;
+            totalScore = await result;
             try
             {
-                context.Call(new Questionary(group.TotalScore, _questions[1], group.Name), Question3);
+                context.Call(new Questionary(totalScore, _questions[1], groupName), Question3);
             }
             catch (TooManyAttemptsException)
             {
@@ -84,17 +79,10 @@ namespace Bot_Application1.Dialogs
 
         private async Task Question3(IDialogContext context, IAwaitable<int> result)
         {
-            group.QuestionScores.Add(
-                new QuestionScore
-                {
-                    Question = "2",
-                    Score = await result - group.TotalScore
-                });
-
-            group.TotalScore = await result;
+            totalScore = await result;
             try
             {
-                context.Call(new Questionary(group.TotalScore, _questions[2], group.Name), Question4);
+                context.Call(new Questionary(totalScore, _questions[2], groupName), Question4);
             }
             catch (TooManyAttemptsException)
             {
@@ -105,17 +93,10 @@ namespace Bot_Application1.Dialogs
 
         private async Task Question4(IDialogContext context, IAwaitable<int> result)
         {
-            group.QuestionScores.Add(
-                new QuestionScore
-                {
-                    Question = "3",
-                    Score = await result - group.TotalScore
-                });
-
-            group.TotalScore = await result;
+            totalScore = await result;
             try
             {
-                context.Call(new Questionary(group.TotalScore, _questions[3], group.Name), Question5);
+                context.Call(new Questionary(totalScore, _questions[3], groupName), Question5);
             }
             catch (TooManyAttemptsException)
             {
@@ -126,17 +107,10 @@ namespace Bot_Application1.Dialogs
 
         private async Task Question5(IDialogContext context, IAwaitable<int> result)
         {
-            group.QuestionScores.Add(
-                new QuestionScore
-                {
-                    Question = "4",
-                    Score = await result - group.TotalScore
-                });
-
-            group.TotalScore = await result;
+            totalScore = await result;
             try
             {
-                context.Call(new Questionary(group.TotalScore, _questions[4], group.Name), Question6);
+                context.Call(new Questionary(totalScore, _questions[4], groupName), Question6);
             }
             catch (TooManyAttemptsException)
             {
@@ -147,17 +121,10 @@ namespace Bot_Application1.Dialogs
 
         private async Task Question6(IDialogContext context, IAwaitable<int> result)
         {
-            group.QuestionScores.Add(
-                new QuestionScore
-                {
-                    Question = "5",
-                    Score = await result - group.TotalScore
-                });
-
-            group.TotalScore = await result;
+            totalScore = await result;
             try
             {
-                context.Call(new Questionary(newGroup.TotalScore, _questions[5], group.Name), Question7);
+                context.Call(new Questionary(totalScore, _questions[5], groupName), Question7);
             }
             catch (TooManyAttemptsException)
             {
@@ -170,9 +137,7 @@ namespace Bot_Application1.Dialogs
         {
             try
             {
-
-                context.Call(new Questionary(newGroup.TotalScore, _questions[6]), Question8);
-
+                context.Call(new Questionary(totalScore, _questions[6], groupName), Question8);
             }
             catch (TooManyAttemptsException)
             {
@@ -185,9 +150,7 @@ namespace Bot_Application1.Dialogs
         {
             try
             {
-
-                context.Call(new Questionary(newGroup.TotalScore, _questions[7]), Question9);
-
+                context.Call(new Questionary(totalScore, _questions[7], groupName), Question9);
             }
             catch (TooManyAttemptsException)
             {
@@ -200,9 +163,7 @@ namespace Bot_Application1.Dialogs
         {
             try
             {
-
-                context.Call(new Questionary(newGroup.TotalScore, _questions[8]), QuestionFinal);
-
+                context.Call(new Questionary(totalScore, _questions[8], groupName), QuestionFinal);
             }
             catch (TooManyAttemptsException)
             {
@@ -213,17 +174,10 @@ namespace Bot_Application1.Dialogs
 
         private async Task QuestionFinal(IDialogContext context, IAwaitable<int> result)
         {
-            group.QuestionScores.Add(
-                new QuestionScore
-                {
-                    Question = "6",
-                    Score = await result - group.TotalScore
-                });
-
-            group.TotalScore = await result;
+            totalScore = await result;
             try
             {
-                context.Call(new Questionary(group.TotalScore, _questions[6], group.Name), Farewell);
+                context.Call(new Questionary(totalScore, _questions[9], groupName), Farewell);
             }
             catch (TooManyAttemptsException)
             {
@@ -234,22 +188,13 @@ namespace Bot_Application1.Dialogs
 
         private async Task Farewell(IDialogContext context, IAwaitable<int> result)
         {
-            group.QuestionScores.Add(
-                new QuestionScore
-                {
-                    Question = "7",
-                    Score = await result - group.TotalScore
-                });
-
-            group.TotalScore = await result;
+            totalScore = await result;
             try
             {
-                await context.PostAsync($"Tu resultado final es { group.TotalScore }.");
-                await context.PostAsync($"{ group.Name }, gracias por participar!");
+                await context.PostAsync($"Tu resultado final es { totalScore }.");
+                await context.PostAsync($"{ groupName }, gracias por participar!");
 
-                //TODO: save data for group
-
-
+                await SaveGroup();
                 context.Done("");
             }
             catch (TooManyAttemptsException)
@@ -262,6 +207,17 @@ namespace Bot_Application1.Dialogs
         private async Task FailMessage(IDialogContext context)
         {
             await context.PostAsync("Lo lamento, no te entendi. Tratemos de nuevo.");
+        }
+
+        private async Task SaveGroup()
+        {
+            var groupentity = new TableEntity
+            {
+                PartitionKey = "Name",
+                RowKey = groupName
+            };
+            var sm = new StorageManager();
+            await sm.StoreEntity(groupentity, "Group");
         }
         
     }

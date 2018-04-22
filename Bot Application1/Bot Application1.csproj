@@ -129,6 +129,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\UnityConfig.cs" />
+    <Compile Include="App_Start\UnityExtension.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Dialogs\Formalities.cs" />
@@ -144,8 +146,12 @@
     <Compile Include="Models\QuestionScore.cs" />
     <Compile Include="Models\QuestionsFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Storage\DataAccess.cs" />
     <Compile Include="Storage\GroupTableEntity.cs" />
+    <Compile Include="Storage\IDataAccess.cs" />
+    <Compile Include="Storage\IStorageManager.cs" />
     <Compile Include="Storage\StorageManager.cs" />
+    <Compile Include="WebApi\GroupsController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
@@ -159,10 +165,7 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Authentication\" />
-    <Folder Include="WebApi\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

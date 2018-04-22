@@ -8,13 +8,7 @@ namespace Bot_Application1.Models
     {
         public string Name { get; set; }
         public int TotalScore { get; set; }
-        public List<QuestionScore> QuestionScores { get; private set; }
+        public IEnumerable<QuestionScore> QuestionScores { get; set; }
 
-        public Group()
-        {
-            Name = "";
-            TotalScore = 0;
-            QuestionScores = new List<QuestionScore>();
-        }
     }
 }
