@@ -11,9 +11,16 @@ namespace Bot_Application1.Dialogs
     [Serializable]
     public class RootDialog : IDialog<object>
     {
-        private string groupName;
+        private readonly IDataAccess _dataAccess;
+
         private int totalScore;
+        private string groupName;
         private readonly List<Question> _questions = QuestionsFactory.GetQuestions();
+
+        public RootDialog(IDataAccess dataAccess)
+        {
+            _dataAccess = dataAccess;
+        }
 
         public async Task StartAsync(IDialogContext context)
         {
@@ -54,7 +61,7 @@ namespace Bot_Application1.Dialogs
         {
             try
             {
-                context.Call(new Questionary(totalScore, _questions[0], groupName), Question2);
+                context.Call(new Questionary(_questions[0]), Question2);
             }
             catch (TooManyAttemptsException)
             {
@@ -65,10 +72,13 @@ namespace Bot_Application1.Dialogs
 
         private async Task Question2(IDialogContext context, IAwaitable<int> result)
         {
-            totalScore = await result;
+            //Save Previous Score
+            await SaveScore(await result, 1);
+
+            //Send next Question
             try
             {
-                context.Call(new Questionary(totalScore, _questions[1], groupName), Question3);
+                context.Call(new Questionary(_questions[1]), Question3);
             }
             catch (TooManyAttemptsException)
             {
@@ -79,10 +89,13 @@ namespace Bot_Application1.Dialogs
 
         private async Task Question3(IDialogContext context, IAwaitable<int> result)
         {
-            totalScore = await result;
+            //Save Previous Score
+            await SaveScore(await result, 2);
+
+            //Send next Question
             try
             {
-                context.Call(new Questionary(totalScore, _questions[2], groupName), Question4);
+                context.Call(new Questionary(_questions[2]), Question4);
             }
             catch (TooManyAttemptsException)
             {
@@ -93,10 +106,13 @@ namespace Bot_Application1.Dialogs
 
         private async Task Question4(IDialogContext context, IAwaitable<int> result)
         {
-            totalScore = await result;
+            //Save Previous Score
+            await SaveScore(await result, 3);
+
+            //Send next Question
             try
             {
-                context.Call(new Questionary(totalScore, _questions[3], groupName), Question5);
+                context.Call(new Questionary(_questions[3]), Question5);
             }
             catch (TooManyAttemptsException)
             {
@@ -107,10 +123,13 @@ namespace Bot_Application1.Dialogs
 
         private async Task Question5(IDialogContext context, IAwaitable<int> result)
         {
-            totalScore = await result;
+            //Save Previous Score
+            await SaveScore(await result, 4);
+
+            //Send next Question
             try
             {
-                context.Call(new Questionary(totalScore, _questions[4], groupName), Question6);
+                context.Call(new Questionary(_questions[4]), Question6);
             }
             catch (TooManyAttemptsException)
             {
@@ -121,10 +140,13 @@ namespace Bot_Application1.Dialogs
 
         private async Task Question6(IDialogContext context, IAwaitable<int> result)
         {
-            totalScore = await result;
+            //Save Previous Score
+            await SaveScore(await result, 5);
+
+            //Send next Question
             try
             {
-                context.Call(new Questionary(totalScore, _questions[5], groupName), Question7);
+                context.Call(new Questionary(_questions[5]), Question7);
             }
             catch (TooManyAttemptsException)
             {
@@ -135,9 +157,13 @@ namespace Bot_Application1.Dialogs
 
         private async Task Question7(IDialogContext context, IAwaitable<int> result)
         {
+            //Save Previous Score
+            await SaveScore(await result, 6);
+
+            //Send next Question
             try
             {
-                context.Call(new Questionary(totalScore, _questions[6], groupName), Question8);
+                context.Call(new Questionary(_questions[6]), Question8);
             }
             catch (TooManyAttemptsException)
             {
@@ -148,9 +174,13 @@ namespace Bot_Application1.Dialogs
 
         private async Task Question8(IDialogContext context, IAwaitable<int> result)
         {
+            //Save Previous Score
+            await SaveScore(await result, 7);
+
+            //Send next Question
             try
             {
-                context.Call(new Questionary(totalScore, _questions[7], groupName), Question9);
+                context.Call(new Questionary(_questions[7]), Question9);
             }
             catch (TooManyAttemptsException)
             {
@@ -161,9 +191,13 @@ namespace Bot_Application1.Dialogs
 
         private async Task Question9(IDialogContext context, IAwaitable<int> result)
         {
+            //Save Previous Score
+            await SaveScore(await result, 8);
+
+            //Send next Question
             try
             {
-                context.Call(new Questionary(totalScore, _questions[8], groupName), QuestionFinal);
+                context.Call(new Questionary(_questions[8]), QuestionFinal);
             }
             catch (TooManyAttemptsException)
             {
@@ -174,10 +208,13 @@ namespace Bot_Application1.Dialogs
 
         private async Task QuestionFinal(IDialogContext context, IAwaitable<int> result)
         {
-            totalScore = await result;
+            //Save Previous Score
+            await SaveScore(await result, 9);
+
+            //Send next Question
             try
             {
-                context.Call(new Questionary(totalScore, _questions[9], groupName), Farewell);
+                context.Call(new Questionary(_questions[9]), Farewell);
             }
             catch (TooManyAttemptsException)
             {
@@ -188,7 +225,10 @@ namespace Bot_Application1.Dialogs
 
         private async Task Farewell(IDialogContext context, IAwaitable<int> result)
         {
-            totalScore = await result;
+            //Save Previous Score
+            await SaveScore(await result, 10);
+
+            //Send next Question
             try
             {
                 await context.PostAsync($"Tu resultado final es { totalScore }.");
@@ -209,6 +249,14 @@ namespace Bot_Application1.Dialogs
             await context.PostAsync("Lo lamento, no te entendi. Tratemos de nuevo.");
         }
 
+        //FAIL DATA
+        private async Task SaveScore(int score, int question)
+        {
+            totalScore += score;
+            var groupentity = new GroupTableEntity(groupName, question.ToString()) { Score = score };
+            await _dataAccess.StoreEntity(groupentity, "GroupScore");
+        }
+
         private async Task SaveGroup()
         {
             var groupentity = new TableEntity
@@ -216,8 +264,7 @@ namespace Bot_Application1.Dialogs
                 PartitionKey = "Name",
                 RowKey = groupName
             };
-            var sm = new StorageManager();
-            await sm.StoreEntity(groupentity, "Group");
+            await _dataAccess.StoreEntity(groupentity, "Group");
         }
         
     }

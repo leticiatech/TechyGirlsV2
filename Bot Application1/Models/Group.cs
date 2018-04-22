@@ -10,5 +10,6 @@ namespace Bot_Application1.Models
         public int TotalScore { get; set; }
         public IEnumerable<QuestionScore> QuestionScores { get; set; }
 
+
     }
 }

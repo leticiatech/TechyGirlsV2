@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Bot_Application1.Models;
 using Microsoft.WindowsAzure.Storage.Table;
 
@@ -14,6 +15,11 @@ namespace Bot_Application1.Storage
             _storageManager = storageManager;
         }
 
+        public async Task StoreEntity(ITableEntity entity, string tableName)
+        {
+            await _storageManager.StoreEntity(entity, tableName);
+        }
+
         public IEnumerable<Group> GetGroupsWithScores()
         {
             var result = new List<Group>();
@@ -22,12 +28,17 @@ namespace Bot_Application1.Storage
             foreach (var g in groups)
             {
                 var tableEntity = _storageManager.GetScoresByGroup(g);
-                var group = new Group {Name = g , QuestionScores = tableEntity.Select(t => 
+                var group = new Group {
+                    Name = g ,
+                    QuestionScores = tableEntity.Select(t => 
                     new QuestionScore
                     {
                         Question = t.RowKey,
                         Score = t.Score
-                    }) };
+                    }),
+                    TotalScore = tableEntity.Sum(t => t.Score)
+                };
+
 
                 result.Add(group);
             }
