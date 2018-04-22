@@ -91,7 +91,7 @@ namespace Bot_Application1.Dialogs
             var groupentity = new GroupTableEntity(_groupName, _question.Number.ToString()) {Score = score};
 
             var sm = new StorageManager();
-            await sm.StoreEntity(groupentity);
+            await sm.StoreEntity(groupentity, "GroupScore");
         }
 
         private bool IsValidOption(string received)
