@@ -12,18 +12,14 @@ namespace Bot_Application1.Dialogs
     [Serializable]
     public class Questionary : IDialog<int>
     {
-        private readonly string _groupName;
         private readonly Question _question;
 
         private const int MaxPoints = 5;
         private const int MinPoints = 3;
-        private int _totalScore;
 
-        public Questionary(int totalScore, Question question, string groupName)
+        public Questionary(Question question)
         {
-            _totalScore = totalScore;
             _question = question;
-            _groupName = groupName;
         }
 
         public async Task StartAsync(IDialogContext context)
@@ -33,7 +29,7 @@ namespace Bot_Application1.Dialogs
 
             //Send options
             foreach (var o in _question.Options)
-                await context.PostAsync(o.OptionLetter +". "+ o.Text);
+                await context.PostAsync(o.OptionLetter + ". " + o.Text);
 
             context.Wait(this.MessageReceivedAsync);
         }
@@ -51,15 +47,13 @@ namespace Bot_Application1.Dialogs
             //Correct in First try
             if (IsCorrect(message.Text))
             {
-                _totalScore += MaxPoints;
-                await SaveScore(MaxPoints);
-                context.Done(_totalScore);
+                context.Done(MaxPoints);
             }
             else
             {
                 await context.PostAsync("Incorrecto! Intentalo de nuevo:");
 
-                foreach(var o in RemoveSelected(message.Text))
+                foreach (var o in RemoveSelected(message.Text))
                     await context.PostAsync(o.OptionLetter + ". " + o.Text);
 
                 context.Wait(this.AskAgain);
@@ -70,28 +64,8 @@ namespace Bot_Application1.Dialogs
         {
             var message = await result;
 
-            //Correct in Second try
-            if (IsCorrect(message.Text))
-            {
-                _totalScore += MinPoints;
-                await SaveScore(MinPoints);
-                context.Done(_totalScore);
-            }
-            else
-            {
-                //Incorrect!
-                _totalScore += 0;
-                await SaveScore(0);
-                context.Done(_totalScore);
-            }
-        }
-
-        private async Task SaveScore(int score)
-        {
-            var groupentity = new GroupTableEntity(_groupName, _question.Number.ToString()) {Score = score};
-
-            var sm = new StorageManager();
-            await sm.StoreEntity(groupentity, "GroupScore");
+            //Correct in Second try, or incorrect
+            context.Done(IsCorrect(message.Text) ? MinPoints : 0);
         }
 
         private bool IsValidOption(string received)
