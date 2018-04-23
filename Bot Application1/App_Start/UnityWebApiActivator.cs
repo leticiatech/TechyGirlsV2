@@ -1,7 +1,6 @@
 using Bot_Application1.App_Start;
 using System.Web.Http;
 using Unity.AspNet.WebApi;
-using System;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Bot_Application1.UnityWebApiActivator), nameof(Bot_Application1.UnityWebApiActivator.Start))]
 [assembly: WebActivatorEx.ApplicationShutdownMethod(typeof(Bot_Application1.UnityWebApiActivator), nameof(Bot_Application1.UnityWebApiActivator.Shutdown))]

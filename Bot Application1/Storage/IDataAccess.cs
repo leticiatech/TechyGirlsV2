@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Bot_Application1.Models;
 using Microsoft.WindowsAzure.Storage.Table;
