@@ -15,7 +15,7 @@ namespace Bot_Application1.Dialogs
 
         public async Task StartAsync(IDialogContext context)
         {
-          await context.PostAsync("Hola, mi nombre es Ada. Escribe un nombre para tu equipo:");
+          await context.PostAsync("Hola, mi nombre es Ada!");
 
             context.Wait(this.MessageReceivedAsync);
         }
@@ -40,7 +40,7 @@ namespace Bot_Application1.Dialogs
                 if (attempts > 0)
                 {
 
-                    await context.PostAsync("Lo siento, no entiendo. ¿Como es el nombre del equipo?");
+                    await context.PostAsync("Escribe un nombre para tu equipo:");
 
                     context.Wait(this.MessageReceivedAsync);
                 }
