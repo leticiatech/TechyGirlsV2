@@ -40,6 +40,7 @@ class Auth {
   }
 
   login(user) {
+    console.log(user)
     return this.instance.post(config.AUTH_API, user);
   }
 

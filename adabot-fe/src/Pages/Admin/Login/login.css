@@ -55,6 +55,7 @@ h1 {
 .wc-message-from-bot .wc-message-content {
   color: #4b4b4b; }
 
+<<<<<<< HEAD
 .admin-page h3 {
   color: #ffffff; }
 
@@ -66,3 +67,72 @@ h1 {
 
 .admin-page .group-name {
   color: #55a4ae; }
+=======
+.login-page {
+  height: 100%;
+  width: 100%; }
+
+.login-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); }
+
+.Logo {
+  height: 224px;
+  object-fit: contain;
+  margin: auto; }
+
+.login-user {
+  margin: 40px auto;
+  padding: 1px 70px;
+  width: 400px; }
+  .login-user form {
+    margin: 50px 0; }
+  .login-user .form-group {
+    margin-bottom: 40px;
+    position: relative;
+    border-bottom: solid 1px white; }
+    .login-user .form-group .input-error-message {
+      display: none; }
+    .login-user .form-group.error {
+      border-bottom-color: #ff6666; }
+      .login-user .form-group.error .input-error-message {
+        bottom: -22px;
+        color: #ff6666;
+        display: block;
+        font-size: 14px;
+        position: absolute; }
+    .login-user .form-group input {
+      border: none;
+      border-radius: 0;
+      background-color: transparent;
+      box-shadow: none;
+      color: white;
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 18px;
+      font-weight: normal; }
+      .login-user .form-group input::placeholder {
+        font-weight: lighter;
+        color: #d3d3d3; }
+      .login-user .form-group input:focus {
+        box-shadow: none; }
+    .login-user .form-group .input-icon {
+      background-color: transparent;
+      border: none;
+      padding: 6px 0px;
+      width: 25px; }
+      .login-user .form-group .input-icon div {
+        background-repeat: no-repeat;
+        height: 17px;
+        margin: 8px auto;
+        width: 17px; }
+  .login-user .btn-admin {
+    width: 100%; }
+  .login-user .error-message {
+    color: #ff6666;
+    display: block;
+    font-size: 14px;
+    margin: 15px 0;
+    text-align: center; }
+>>>>>>> add login page

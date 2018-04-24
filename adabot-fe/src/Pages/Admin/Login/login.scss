@@ -1,1 +1,97 @@
 @import "../../../assets/styles/colors.scss";
+
+.login-page {
+  height: 100%;
+  width: 100%;
+}
+
+.login-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.Logo {
+  height: 224px;
+  object-fit: contain;
+  margin: auto;
+}
+
+.login-user {
+  margin: 40px auto;
+  padding: 1px 70px;
+  width: 400px;
+
+  form {
+    margin: 50px 0;
+  }
+
+  .form-group {
+    margin-bottom: 30px;
+    position: relative;
+    border-bottom: solid 1px white;
+
+    .input-error-message {
+      display: none;
+    }
+
+    &.error {
+      border-bottom-color: $color-error;
+
+      .input-error-message {
+        bottom: -22px;
+        color: $color-error;
+        display: block;
+        font-size: 14px;
+        position: absolute;
+      }
+    }
+
+    input {
+      border: none;
+      border-radius: 0;
+      background-color: transparent;
+      box-shadow: none;
+      color: white;
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 18px;
+      font-weight: normal;
+
+      &::placeholder {
+      	font-weight: lighter;
+        color: #d3d3d3;
+      }
+
+      &:focus {
+        box-shadow: none;
+      }
+    }
+
+    .input-icon {
+      background-color: transparent;
+      border: none;
+      padding: 6px 0px;
+      width: 25px;
+
+      div {
+        background-repeat: no-repeat;
+        height: 17px;
+        margin: 8px auto;
+        width: 17px;
+      }
+    }
+  }
+
+  .btn-admin {
+  	width: 100%;
+  }
+
+  .error-message {
+    color: $color-error;
+    display: block;
+    font-size: 14px;
+    margin: 15px 0;
+    text-align: center;
+  }
+}
