@@ -1,13 +1,25 @@
+import * as axios from 'axios';
+import axiosRetry from 'axios-retry';
+import * as config from './config';
 
 class Auth {
 
   constructor() {
     this.user = null;
+
+    this.instance = axios.create({
+        baseURL: config.API_PATH,
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Medable-Client-Key': config.MEDABLE_CLIENT_KEY
+        }
+    });
+    axiosRetry(this.instance, { retries: 2, retryDelay: (retryCount) => 500 });
   }
 
   setAuthorizedUser(user) {
     this.user = {
-      email: user.email
+      mail: user.mail
     };
     window.localStorage.setItem('authenticated', true);
     window.localStorage.setItem('authenticated-user', JSON.stringify(this.user));
@@ -28,7 +40,7 @@ class Auth {
   }
 
   login(user) {
-    return Promise.resolve();
+    return this.instance.post(config.AUTH_API, user);
   }
 
 }
