@@ -4,6 +4,7 @@ import { ProtectedRoute } from './Components/ProtectedRoute';
 
 import { AdabotPage } from './Pages/Adabot/adabot';
 import { BotPage } from './Pages/Bot/bot';
+import { AdminPage } from './Pages/Admin/Admin/admin';
 import { LoginAdminPage } from './Pages/Admin/Login/login';
 import { ResultadosAdminPage } from './Pages/Admin/Resultados/resultados';
 import { ResultadosFinalesAdminPage } from './Pages/Admin/Resultados/resultadosFinales';
@@ -17,7 +18,8 @@ class App extends Component {
         <div>
           <Route exact path="/" component={AdabotPage} />
           <Route exact path="/bot" component={BotPage} />
-          <Route exact path="/admin" component={LoginAdminPage} />
+          <Route exact path="/admin" component={AdminPage} />
+          <Route exact path="/admin/login" component={LoginAdminPage} />
           <ProtectedRoute path="/admin/resultados" component={ResultadosAdminPage} />
           <ProtectedRoute path="/admin/resultadosFinales" component={ResultadosFinalesAdminPage} />
         </div>
