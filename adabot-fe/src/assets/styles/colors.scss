@@ -1,6 +1,7 @@
 $dark-violet: #70477c;
 $violet: #925ea0;
 $white: #ffffff;
+$dark-gray: #4b4b4b;
 $primary-button: #55a4ae;
 $primary-button_border:#71e1ef;
 
@@ -16,6 +17,10 @@ h1{
 .intro{  
     background-image: linear-gradient(16deg, $white, rgba(255, 255, 255, 0.8));
     color: $violet;
+
+    h2{
+        color: transparent;
+    }
 }
 .primary-button{
     background-color: $primary-button;
@@ -39,3 +44,19 @@ h1{
 ::-moz-placeholder{color:$white;}
 :-ms-input-placeholder{color:$white;}
 :-moz-placeholder{color:$white;}
+
+.wc-message-wrapper{
+}
+.wc-message-from-me,
+.wc-message-from-bot{    
+    .wc-message-content{
+        background-image: linear-gradient(15deg, $white, rgba(255, 255, 255, 0.8));
+        background-color: transparent;
+        color: $primary-button;
+    }
+} 
+.wc-message-from-bot{
+    .wc-message-content{
+        color: $dark-gray;
+    }
+}

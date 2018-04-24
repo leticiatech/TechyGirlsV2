@@ -5,11 +5,13 @@
     margin: 0 auto;
     max-width: 375px;
 }
-.wc-header {
+.wc-header,
+.wc-message-from {
   display: none;
 }
 .wc-message-groups{
     overflow-y: auto;
+    padding: 0px 30px 10px;
     top: 200px;
 }
 .wc-console{
@@ -34,3 +36,61 @@
         width: 64px;
     }
 } 
+.wc-message-wrapper{
+    margin-bottom: 20px;
+}
+.wc-message-from-me,
+.wc-message-from-bot{    
+    float: left;
+    position: relative;
+    width: 100%;
+    .wc-message-content{        
+        box-shadow: none;
+        font-weight: 700;
+        min-height: 52px;
+        text-align: left;
+    }
+    &::before{
+        content: url('../../assets/img/group_avatar.png');
+        display: block;
+        height: 64px;
+        right: 0;
+        position: absolute;
+        top: 0;
+        width: 64px;
+        z-index: 1;
+    }
+} 
+.wc-message-from-me{
+    .wc-message-content{
+        border-radius: 8px 30px 30px 8px;
+        padding-right: 64px;
+    }
+}
+.wc-message-from-bot{
+    float: right;
+    margin-left: 0;
+    .wc-message-content{
+        border-radius: 30px 8px 8px 30px;
+        padding-left: 64px;
+        text-align: right;
+    }
+    &::before{
+        content: url('../../assets/img/ada_avatar_small.png');
+        display: block;
+        height: 64px;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 64px;
+        z-index: 1;
+    }
+}
+.wc-message{
+    max-width: 100%;
+    min-height: 64px;
+    padding-top: 5px;
+    .wc-message-callout{  
+        display: none;
+    }
+}
