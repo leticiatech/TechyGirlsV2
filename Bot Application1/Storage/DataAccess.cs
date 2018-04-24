@@ -46,5 +46,12 @@ namespace Bot_Application1.Storage
             }
             return result;
         }
+
+        public bool login(string mail, string password)
+        {
+            var credentials = _storageManager.GetCredentials();
+
+            return credentials.RowKey.Equals(mail) && credentials.Password.Equals(password);
+        }
     }
 }
