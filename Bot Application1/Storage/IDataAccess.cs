@@ -9,5 +9,6 @@ namespace Bot_Application1.Storage
     {
         Task StoreEntity(ITableEntity entity, string tableName);
         IEnumerable<Group> GetGroupsWithScores();
+        bool login(string mail, string password);
     }
 }

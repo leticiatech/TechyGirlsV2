@@ -10,5 +10,6 @@ namespace Bot_Application1.Storage
         Task StoreEntity(ITableEntity entity, string tableName);
         List<string> GetAllGroupsNames();
         List<GroupTableEntity> GetScoresByGroup(string groupName);
+        UserTableEntity GetCredentials();
     }
 }

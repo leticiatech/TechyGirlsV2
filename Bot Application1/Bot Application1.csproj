@@ -185,7 +185,8 @@
     <Compile Include="Storage\IDataAccess.cs" />
     <Compile Include="Storage\IStorageManager.cs" />
     <Compile Include="Storage\StorageManager.cs" />
-    <Compile Include="WebApi\GroupsController.cs" />
+    <Compile Include="Storage\UsersTableEntity.cs" />
+    <Compile Include="WebApi\ApiController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
