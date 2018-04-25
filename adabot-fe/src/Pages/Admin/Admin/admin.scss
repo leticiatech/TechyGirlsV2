@@ -1,0 +1,37 @@
+@import "../../../assets/styles/colors.scss";
+
+.admin-page {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 40%;
+	transform: translate(0, -50%);
+
+	.ver-resultados {
+		margin-top: 60px;
+	}
+
+}
+
+.btn-admin {
+	width: 320px;
+  height: 64px;
+  border-radius: 8px;
+  background-color: white;
+  color: $primary-button;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+
+  &:hover {
+  	background-color: white;
+  	color: darken($primary-button, 10%);
+  }
+
+  &:focus, &:focus:active {
+      background: white;
+      box-shadow: none;
+      color: darken($primary-button, 10%);
+      outline: none;
+    }
+}
