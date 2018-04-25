@@ -70,5 +70,26 @@ namespace Bot_Application1.Storage
 
             return table.ExecuteQuery(query).ToList();
         }
+
+        public UserTableEntity GetCredentials()
+        {
+            //CloudStorageAccount
+            var storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("StorageConnectionString"));
+
+            //CloudTableClient
+            var tableClient = storageAccount.CreateCloudTableClient();
+
+            //CloudTable
+            var table = tableClient.GetTableReference("Users");
+            table.CreateIfNotExists();
+
+            TableOperation retrieveOperation = TableOperation.Retrieve<UserTableEntity>("Credentials", CloudConfigurationManager.GetSetting("userMail"));
+
+            TableResult retrievedResult = table.Execute(retrieveOperation);
+
+            var result = (UserTableEntity) retrievedResult.Result;
+
+            return result;
+        }
     }
 }

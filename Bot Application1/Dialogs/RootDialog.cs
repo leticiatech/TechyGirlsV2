@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 using Bot_Application1.Models;
 using Bot_Application1.Storage;
@@ -27,11 +28,6 @@ namespace Bot_Application1.Dialogs
             /* Wait until the first message is received from the conversation and call MessageReceviedAsync 
              *  to process that message. */
             totalScore = 0;
-            context.Wait(this.MessageReceivedAsync);
-        }
-
-        private async Task MessageReceivedAsync(IDialogContext context, IAwaitable<object> result)
-        {
             await SendWelcomeMessageAsync(context);
         }
 
@@ -229,8 +225,13 @@ namespace Bot_Application1.Dialogs
             //Send next Question
             try
             {
-                await context.PostAsync($"Tu resultado final es { totalScore }.");
-                await context.PostAsync($"{ groupName }, gracias por participar!");
+                var line = new StringBuilder();
+                line.AppendLine($"Tu resultado final es {totalScore} puntos.");
+                line.AppendLine("");
+                line.AppendLine($"{ groupName }, gracias por participar!");
+
+                await context.PostAsync(line.ToString());
+                await context.PostAsync("Para ver todos los resultados clickea en el link y logueate con el usuario de admin, o envía algo para volver a comenzar");
 
                 await SaveGroup();
                 context.Done("");
@@ -244,7 +245,7 @@ namespace Bot_Application1.Dialogs
         //FAIL MESSAGE
         private async Task FailMessage(IDialogContext context)
         {
-            await context.PostAsync("Lo lamento, no te entendi. Tratemos de nuevo.");
+            await context.PostAsync("Lo lamento, no te entendi. Intentemos de nuevo!");
         }
 
         //FAIL DATA

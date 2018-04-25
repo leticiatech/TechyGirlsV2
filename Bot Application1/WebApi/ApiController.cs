@@ -5,12 +5,12 @@ using Bot_Application1.Storage;
 
 namespace Bot_Application1.WebApi
 {
-    [RoutePrefix("api/scores")]
-    public class GroupsController : ApiController
+    [RoutePrefix("api")]
+    public class ApiController : System.Web.Http.ApiController
     {
         private readonly IDataAccess _dataAccess;
 
-        public GroupsController(IDataAccess dataAccess)
+        public ApiController(IDataAccess dataAccess)
         {
             _dataAccess = dataAccess;
         }
@@ -20,6 +20,13 @@ namespace Bot_Application1.WebApi
         public IEnumerable<Group> GetAllGroups()
         {
             return _dataAccess.GetGroupsWithScores();
+        }
+
+        [Route("AuthenticationAdmin")]
+        [HttpPost]
+        public bool Processlogin(string mail, string password)
+        {
+            return _dataAccess.login(mail, password);
         }
     }
 }

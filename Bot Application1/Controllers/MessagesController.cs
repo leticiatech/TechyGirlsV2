@@ -1,4 +1,6 @@
-﻿using System.Net;
+﻿using System;
+using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -24,19 +26,19 @@ namespace Bot_Application1.Controllers
         /// </summary>
         public async Task<HttpResponseMessage> Post([FromBody]Activity activity)
         {
-            if (activity.Type == ActivityTypes.ConversationUpdate || activity.Type == ActivityTypes.Message)
+            if (activity.Type == ActivityTypes.Message)
             {
                 await Conversation.SendAsync(activity, () => new Dialogs.RootDialog(_dataAccess));
             }
             else
             {
-                HandleSystemMessage(activity);
+                await HandleSystemMessage(activity);
             }
             var response = Request.CreateResponse(HttpStatusCode.OK);
             return response;
         }
 
-        private Activity HandleSystemMessage(Activity message)
+        private async Task<Activity> HandleSystemMessage(Activity message)
         {
             if (message.Type == ActivityTypes.DeleteUserData)
             {
@@ -46,8 +48,17 @@ namespace Bot_Application1.Controllers
             else if (message.Type == ActivityTypes.ConversationUpdate)
             {
                 // Handle conversation state changes, like members being added and removed
-                // Use Activity.MembersAdded and Activity.MembersRemoved and Activity.Action for info
-                // Not available in all channels
+
+                if (message.MembersAdded.Any(o => o.Id == message.Recipient.Id))
+                {
+                    var connector = new ConnectorClient(new System.Uri(message.ServiceUrl));
+                    var reply1 = message.CreateReply("Hola, mi nombre es Ada!");
+                    var reply2 = message.CreateReply("Escribe un nombre para tu equipo:");
+                    await connector.Conversations.ReplyToActivityAsync(reply1);
+                    System.Threading.Thread.Sleep(1000);
+                    await connector.Conversations.ReplyToActivityAsync(reply2);
+                    message.Type = ActivityTypes.Message;
+                }
             }
             else if (message.Type == ActivityTypes.ContactRelationUpdate)
             {

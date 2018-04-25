@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
 using System.Threading.Tasks;
@@ -15,8 +13,6 @@ namespace Bot_Application1.Dialogs
 
         public async Task StartAsync(IDialogContext context)
         {
-          await context.PostAsync("Hola, mi nombre es Ada!");
-
             context.Wait(this.MessageReceivedAsync);
         }
 
@@ -39,8 +35,7 @@ namespace Bot_Application1.Dialogs
                 --attempts;
                 if (attempts > 0)
                 {
-
-                    await context.PostAsync("Escribe un nombre para tu equipo:");
+                    await context.PostAsync("No entendí! :( Vuelve a escribir el nombre:");
 
                     context.Wait(this.MessageReceivedAsync);
                 }
@@ -48,7 +43,7 @@ namespace Bot_Application1.Dialogs
                 {
                     /* Fails the current dialog, removes it from the dialog stack, and returns the exception to the 
                         parent/calling dialog. */
-                    context.Fail(new TooManyAttemptsException("Disculpa, pero no entendí el nombre"));
+                    context.Fail(new TooManyAttemptsException("Disculpa, pero no entendí! :("));
                 }
             }
         }
