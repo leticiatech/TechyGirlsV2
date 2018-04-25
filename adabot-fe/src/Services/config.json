@@ -1,0 +1,5 @@
+{
+	"API_PATH": "http://techygirlsbot.azurewebsites.net/api",
+	"AUTH_API": "/authenticationadmin",
+	"RESULTADOS_API": "/getgroups"
+}
