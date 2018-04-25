@@ -8,7 +8,10 @@ class Auth {
     this.user = null;
 
     this.instance = axios.create({
-        baseURL: config.API_PATH
+        baseURL: config.API_PATH,
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8'
+        }
     });
     axiosRetry(this.instance, { retries: 2, retryDelay: (retryCount) => 500 });
   }
