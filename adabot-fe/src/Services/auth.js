@@ -8,11 +8,7 @@ class Auth {
     this.user = null;
 
     this.instance = axios.create({
-        baseURL: config.API_PATH,
-        headers: {
-          'Content-Type': 'application/json; charset=UTF-8',
-          'Medable-Client-Key': config.MEDABLE_CLIENT_KEY
-        }
+        baseURL: config.API_PATH
     });
     axiosRetry(this.instance, { retries: 2, retryDelay: (retryCount) => 500 });
   }
