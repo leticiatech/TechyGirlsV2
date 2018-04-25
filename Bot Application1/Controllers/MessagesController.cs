@@ -53,6 +53,7 @@ namespace Bot_Application1.Controllers
                 {
                     var connector = new ConnectorClient(new System.Uri(message.ServiceUrl));
                     var reply1 = message.CreateReply("Hola, mi nombre es Ada!");
+                    System.Threading.Thread.Sleep(1000);
                     var reply2 = message.CreateReply("Escribe un nombre para tu equipo:");
                     await connector.Conversations.ReplyToActivityAsync(reply1);
                     await connector.Conversations.ReplyToActivityAsync(reply2);
