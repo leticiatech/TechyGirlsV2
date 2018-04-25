@@ -18,6 +18,14 @@ h1 {
   border-color: #71e1ef;
   color: #ffffff; }
 
+.secondary-button {
+  background-color: #ffffff;
+  color: #55a4ae; }
+
+.small-button {
+  background: transparent;
+  color: #ffffff; }
+
 .wc-console {
   background-color: rgba(255, 255, 255, 0.5); }
   .wc-console .wc-textbox input {
@@ -46,3 +54,15 @@ h1 {
 
 .wc-message-from-bot .wc-message-content {
   color: #4b4b4b; }
+
+.admin-page h3 {
+  color: #ffffff; }
+
+.admin-page .group-row {
+  background-color: #ffffff; }
+
+.admin-page th, .admin-page td {
+  color: #999; }
+
+.admin-page .group-name {
+  color: #55a4ae; }
