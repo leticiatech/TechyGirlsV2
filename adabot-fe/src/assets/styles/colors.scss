@@ -27,6 +27,14 @@ h1{
     border-color: $primary-button_border;
     color: $white;
 }
+.secondary-button{    
+    background-color: $white;
+    color: $primary-button;
+}
+.small-button{
+    background: transparent;
+    color: $white;
+}
 .wc-console{
     background-color: rgba(255, 255, 255, 0.5);
     .wc-textbox{
@@ -58,5 +66,20 @@ h1{
 .wc-message-from-bot{
     .wc-message-content{
         color: $dark-gray;
+    }
+}
+
+.admin-page{
+    h3{
+        color: $white;
+    }
+    .group-row{
+        background-color: $white;
+    }
+    th, td{
+        color: #999;
+    }
+    .group-name{
+        color: $primary-button;
     }
 }

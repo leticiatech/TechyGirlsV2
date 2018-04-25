@@ -11,7 +11,7 @@ class AdabotPage extends Component {
 
   start(e) {
     e.preventDefault();
-    this.props.history.push("/bot");
+    this.props.history.replace("/bot");
   }
 
   render() {
