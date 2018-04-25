@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Bot_Application1.Models;
 using Bot_Application1.Storage;
@@ -24,12 +25,17 @@ namespace Bot_Application1.Dialogs
 
         public async Task StartAsync(IDialogContext context)
         {
-            //Send question
-            await context.PostAsync(_question.Text);
+            var line = new StringBuilder();
+            line.AppendLine(_question.Text);
 
-            //Send options
+            //Send question
             foreach (var o in _question.Options)
-                await context.PostAsync(o.OptionLetter + ". " + o.Text);
+            {
+                line.AppendLine("");
+                line.AppendLine(o.OptionLetter + ". " + o.Text);
+            }
+
+            await context.PostAsync(line.ToString());
 
             context.Wait(this.MessageReceivedAsync);
         }
@@ -47,14 +53,22 @@ namespace Bot_Application1.Dialogs
             //Correct in First try
             if (IsCorrect(message.Text))
             {
+                await context.PostAsync("Correcto!");
                 context.Done(MaxPoints);
             }
             else
             {
                 await context.PostAsync("Incorrecto! Intentalo de nuevo:");
 
+                var line = new StringBuilder();
+
+                //Send question
                 foreach (var o in RemoveSelected(message.Text))
-                    await context.PostAsync(o.OptionLetter + ". " + o.Text);
+                {
+                    line.AppendLine("");
+                    line.AppendLine(o.OptionLetter + ". " + o.Text);
+                }
+                await context.PostAsync(line.ToString());
 
                 context.Wait(this.AskAgain);
             }
@@ -65,7 +79,15 @@ namespace Bot_Application1.Dialogs
             var message = await result;
 
             //Correct in Second try, or incorrect
-            context.Done(IsCorrect(message.Text) ? MinPoints : 0);
+            if (IsCorrect(message.Text))
+            {
+                await context.PostAsync("Correcto!");
+                context.Done(MinPoints);
+            }
+            else
+            {
+                context.Done(0);
+            }
         }
 
         private bool IsValidOption(string received)
