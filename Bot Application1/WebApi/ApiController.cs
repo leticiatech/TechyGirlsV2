@@ -17,7 +17,6 @@ namespace Bot_Application1.WebApi
             _dataAccess = dataAccess;
         }
 
-        [EnableCors("*", "*", "PUT,POST")]
         [AllowAnonymous]
         [Route("GetGroups")]
         [HttpGet]
@@ -26,13 +25,12 @@ namespace Bot_Application1.WebApi
             return _dataAccess.GetGroupsWithScores();
         }
 
-        [EnableCors("*", "*", "PUT,POST")]
         [AllowAnonymous]
         [Route("AuthenticationAdmin")]
         [HttpPost]
-        public bool Processlogin(string mail, string password)
+        public bool Processlogin([FromBody] User user)
         {
-            return _dataAccess.login(mail, password);
+            return _dataAccess.login(user.mail, user.password);
         }
     }
 }
