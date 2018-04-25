@@ -1,13 +1,18 @@
 @import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i');
+@import "assets/styles/colors.scss";
 
 @font-face {
   font-family: 'Hensa';
   src: local('Hensa'), url(assets/fonts/Hensa.otf) format('otf') format("opentype"),
   url("assets/fonts/Hensa.ttf") format("truetype");
 }
-
+html{
+  -webkit-tap-highlight-color: transparent;
+}
 html, body{
+  background-image:  linear-gradient(to top, $dark-violet,  $violet);
+  height: 100%;
   min-height: 100%;
 }
 body{
@@ -16,12 +21,8 @@ body{
   padding: 30px 30px 60px;
   text-align: center;
 }
-h1{
-  background: url('assets/img/logo-techy.png') no-repeat 0 0;
-  display: block;
+.Logo.logo-bot{
   height: 112px;
-  margin: 0 auto;
-  width: 148px;
 }
 
 .bot-page{
@@ -30,8 +31,10 @@ h1{
 }
 
 .primary-button{
-  border: 2px solid;
+  background-color: $primary-button;
+  border: 2px solid  $primary-button_border;
   border-radius: 8px;
+  color: $white;
   font-size: 24px;
   font-weight: 700;
   height: 64px;
@@ -41,3 +44,7 @@ h1{
   width: 100%;
   z-index: 2;
 }
+::-webkit-input-placeholder{color:$white;}
+::-moz-placeholder{color:$white;}
+:-ms-input-placeholder{color:$white;}
+:-moz-placeholder{color:$white;}
