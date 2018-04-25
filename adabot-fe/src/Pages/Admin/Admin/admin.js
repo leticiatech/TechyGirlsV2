@@ -16,7 +16,7 @@ class AdminPage extends Component {
 
   render() {
     return (
-      <div className="admin-page">
+      <div className="res-page">
         <Row>
           <img src={logo} title="Techy por el día" alt="Techy por el día" />
         </Row>

@@ -9,7 +9,7 @@ import { LoginAdminPage } from './Pages/Admin/Login/login';
 import { ResultadosAdminPage } from './Pages/Admin/Resultados/resultados';
 import { ResultadosFinalesAdminPage } from './Pages/Admin/Resultados/resultadosFinales';
 
-import './App.css';
+import './app.css';
 
 class App extends Component {
   render() {

@@ -1,6 +1,15 @@
+@import "../../../assets/styles/colors.scss";
+
 .res-wrapper{
     margin: 30px auto;
     max-width: 500px;
+}
+
+.group-score{
+    color: $primary-button;
+    .winner &{
+        color: $white;
+    }
 }
 .total-score{
     background-image: linear-gradient(13deg, #ffffff, rgba(255, 255, 255, 0.8));
@@ -13,7 +22,10 @@
     text-align: left;
 
     & > span{
+        background-image: linear-gradient(7deg, #ebebeb, $white);
+        border: 2px solid $white;
         border-radius: 50%; 
+        color: $primary-button;
         font-size: 32px;
         font-weight: 700;
         height: 64px;
@@ -39,13 +51,20 @@
         }
     }
 
-    &.winner{
+    &.winner{ 
+        background-color: $primary-button;
+        background-image: none;
+        border: solid 4px $primary-button_border;
         box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
         height: 64px;
         margin: 80px 10% 50px auto;
         max-width: 340px;
         & > span{
+            background-color: $primary-button;
+            background-image: none;
+            border:  8px solid $primary-button_border;
             box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.5);
+            color: $white;
             font-size: 64px;
             height: 128px;
             left: -118px;
@@ -53,6 +72,18 @@
             top: -38px;
             width: 128px;
         } 
+        .group-score{
+            font-size: 32px;
+             span{
+                 line-height: 40px;
+                 
+                 &.g-score{
+                    b{
+                        font-size: 24px;
+                    }
+                }
+             }
+        }
     }
 
     .group-score{
@@ -73,33 +104,16 @@
             }
         }
     }
-
-    &.winner {
-        .group-score{
-            font-size: 32px;
-             span{
-                 line-height: 40px;
-                 
-                 &.g-score{
-                    b{
-                        font-size: 24px;
-                    }
-                }
-             }
-        }
-    }
 }
 
 @media screen and (max-width: 560px) {
     .total-score.winner {
-       // margin-right: 3%;
         max-width: 289px;
     }
 }
 @media screen and (max-width: 470px) {
     .total-score {
         &.winner{
-        //margin-right: 10%;
         max-width: 259px;
             & > span{
                 font-size: 54px;
