@@ -86,6 +86,7 @@ namespace Bot_Application1.Dialogs
             }
             else
             {
+                await context.PostAsync("Incorrecto :(");
                 context.Done(0);
             }
         }
