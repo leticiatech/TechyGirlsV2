@@ -84,3 +84,29 @@ h1{
         color: $primary-button;
     }
 }
+
+.group-score{
+    color: $primary-button;
+
+    .winner &{
+        color: $white;
+    }
+}
+.total-score{
+    & > span{
+        background-image: linear-gradient(7deg, #ebebeb, $white);
+        border: 2px solid $white;
+        color: $primary-button;
+    }
+    &.winner{
+        background-color: $primary-button;
+        background-image: none;
+        border: solid 4px $primary-button_border;
+        & > span{
+            color: $white;
+            background-color: $primary-button;
+            background-image: none;
+            border:  8px solid $primary-button_border;
+        } 
+    }
+}
