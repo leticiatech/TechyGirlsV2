@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './adabot.css';
 import ada from '../../assets/img/ada.png';
+import logo from '../../assets/img/logo-techy-bot.svg';
 
 class AdabotPage extends Component {
   
@@ -17,7 +18,9 @@ class AdabotPage extends Component {
   render() {
     return (
       <div className="bot-page">
-        <h1>Techy por el día en Onetree</h1>
+        <div className="Logo logo-bot">
+            <img src={logo} alt="Techy por el día" />
+        </div>
         <div className="intro">
           <img src={ada} title="Ada" alt="Ada" />
           <h2>Hola!</h2>

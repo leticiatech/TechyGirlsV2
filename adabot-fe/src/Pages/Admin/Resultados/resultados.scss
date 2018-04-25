@@ -1,12 +1,16 @@
+@import "../../../assets/styles/colors.scss";
+
 .admin-page{
     padding-top: 30px; 
     img{
         max-width: 100%;
     }
     h3{
+        color: $white;
         font-size: 20px;
     }
     .group-row{
+        background-color: $white;
         border-radius: 4px;
         margin: 30px auto;
         max-width: 500px;
@@ -16,6 +20,7 @@
             width: 100%;
         }
         th, td{
+            color: #999;
             font-size: 12px;
             font-weight: normal;
             padding: 4px 4px 0 4px;
@@ -29,6 +34,7 @@
             text-transform: uppercase;
         }
         .group-name{
+            color: $primary-button;
             font-size: 14px;
             font-weight: 700;
         }
@@ -41,11 +47,14 @@
 }
 
 .secondary-button{
+    background-color: $white;
     border: none;
     border-radius: 8px;
+    color: $primary-button;
     font-size: 20px;
     font-weight: bold;
     height: 48px;
     text-transform: uppercase;
     width: 260px;
 }
+

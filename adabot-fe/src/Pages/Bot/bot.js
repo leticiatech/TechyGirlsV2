@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Chat } from 'botframework-webchat';
+import logo from '../../assets/img/logo-techy-bot.svg';
 
 import './bot.css';
 
@@ -18,7 +19,9 @@ goResults(e) {
   render() {
     return [
       <button type="button" className="small-button" onClick={this.goResults}>Ver resultados</button>,
-      <h1>Techy por el día en Onetree</h1>,
+      <div className="Logo logo-bot">
+            <img src={logo} alt="Techy por el día" />
+        </div>,
       <Chat directLine={{ secret: '0jbPWuaFzhM.cwA.Cmw.r9PpU71NHz-RZccJoyjhi-cIKHEWkI2ffs6n1-xlqFs' }} user={{ id: 'test', name: 'TechyGirlsBot' }}/>
     ];
   }
