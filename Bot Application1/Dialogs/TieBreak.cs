@@ -13,7 +13,7 @@ namespace Bot_Application1.Dialogs
     [Serializable]
     public class TieBreak : IDialog<string>
     {
-        private readonly List<Question> _questions = QuestionsFactory.GetQuestions();
+        private readonly List<Question> _questions = QuestionsTieBreakFactory.GetQuestions();
         public async Task StartAsync(IDialogContext context)
         {
             System.Threading.Thread.Sleep(1000);
@@ -23,7 +23,7 @@ namespace Bot_Application1.Dialogs
             line.AppendLine("");
             line.AppendLine("Deben ordenar correctamente los pasos del proceso de desarrollo de software.");
             line.AppendLine("");
-            line.AppendLine("Comencemos.");
+            line.AppendLine("Para comenzar escribe ok.");
             await context.PostAsync(line.ToString());
             System.Threading.Thread.Sleep(2000);
 
