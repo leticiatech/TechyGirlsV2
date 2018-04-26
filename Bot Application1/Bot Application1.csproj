@@ -175,6 +175,8 @@
     <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Dialogs\Formalities.cs" />
     <Compile Include="Dialogs\Questionary.cs" />
+    <Compile Include="Dialogs\QuestionaryTieBreak.cs" />
+    <Compile Include="Dialogs\TieBreak.cs" />
     <Compile Include="Dialogs\Welcome.cs" />
     <Compile Include="Dialogs\RootDialog.cs" />
     <Compile Include="Global.asax.cs">
@@ -185,6 +187,7 @@
     <Compile Include="Models\Question.cs" />
     <Compile Include="Models\QuestionScore.cs" />
     <Compile Include="Models\QuestionsFactory.cs" />
+    <Compile Include="Models\QuestionsTieBreakFactory.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Storage\DataAccess.cs" />

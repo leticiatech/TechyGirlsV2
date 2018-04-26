@@ -222,7 +222,7 @@ namespace Bot_Application1.Dialogs
             //Save Previous Score
             await SaveScore(await result, 10);
 
-            //Send next Question
+            //Farewell
             try
             {
                 var line = new StringBuilder();
