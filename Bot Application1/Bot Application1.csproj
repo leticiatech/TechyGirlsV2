@@ -185,6 +185,7 @@
     <Compile Include="Models\Question.cs" />
     <Compile Include="Models\QuestionScore.cs" />
     <Compile Include="Models\QuestionsFactory.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Storage\DataAccess.cs" />
     <Compile Include="Storage\GroupTableEntity.cs" />
