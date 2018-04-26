@@ -38,23 +38,23 @@ namespace Bot_Application1.Models
                 new Question
                 {
                     Number = 3,
-                    Text = "3. (BA)",
+                    Text = "3.  ¿Qué hace un analista funcional?",
                     Options = new List<Option>
                     {
-                        new Option {Text = "...", OptionLetter = "a", Correct = true},
-                        new Option {Text = "...", OptionLetter = "b", Correct = false},
-                        new Option {Text = "...", OptionLetter = "c", Correct = false}
+                        new Option {Text = "Es la persona que documenta los procesos y los comunica a los otros equipos de IT", OptionLetter = "a", Correct = true},
+                        new Option {Text = "Es la persona que reporta cambios al cliente", OptionLetter = "b", Correct = false},
+                        new Option {Text = "Solo escribe casos de usos y no sugiere mejoras", OptionLetter = "c", Correct = false}
                     }
                 },
                 new Question
                 {
                     Number = 4,
-                    Text = "4. (BA)",
+                    Text = "4. ¿Qué posición toma el analista funcional dentro del equipo de desarrollo?",
                     Options = new List<Option>
                     {
-                        new Option {Text = "...", OptionLetter = "a", Correct = true},
-                        new Option {Text = "...", OptionLetter = "b", Correct = false},
-                        new Option {Text = "...", OptionLetter = "c", Correct = false}
+                        new Option {Text = "Decide en qué lenguaje se va a desarrollar la app", OptionLetter = "a", Correct = false},
+                        new Option {Text = "Es el nexo entre el cliente y el equipo técnico", OptionLetter = "b", Correct = true},
+                        new Option {Text = "No tiene un rol definido, ayuda con todo", OptionLetter = "c", Correct = false}
                     }
                 },
                 new Question
