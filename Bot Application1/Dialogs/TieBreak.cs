@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web;
 using Bot_Application1.Models;
+using Bot_Application1.Storage;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
 
@@ -13,7 +12,18 @@ namespace Bot_Application1.Dialogs
     [Serializable]
     public class TieBreak : IDialog<string>
     {
+        private readonly IDataAccess _dataAccess;
+
         private readonly List<Question> _questions = QuestionsTieBreakFactory.GetQuestions();
+        private int totalScore;
+        private string _groupName;
+
+        public TieBreak(IDataAccess dataAccess, string groupName)
+        {
+            _dataAccess = dataAccess;
+            _groupName = groupName;
+        }
+
         public async Task StartAsync(IDialogContext context)
         {
             System.Threading.Thread.Sleep(1000);
@@ -49,7 +59,8 @@ namespace Bot_Application1.Dialogs
         private async Task QuestionTieBreak2(IDialogContext context, IAwaitable<int> result)
         {
             //Save Previous Score
-            //await SaveScoreTieBreak(await result, 1);
+            int score = await result;
+            totalScore += score;
 
             //Send next Question
             try
@@ -65,8 +76,8 @@ namespace Bot_Application1.Dialogs
 
         private async Task QuestionTieBreak3(IDialogContext context, IAwaitable<int> result)
         {
-            //Save Previous Score
-           // await SaveScoreTieBreak(await result, 2);
+            int score = await result;
+            totalScore += score;
 
             //Send next Question
             try
@@ -82,8 +93,8 @@ namespace Bot_Application1.Dialogs
 
         private async Task QuestionTieBreak4(IDialogContext context, IAwaitable<int> result)
         {
-            //Save Previous Score
-            //await SaveScoreTieBreak(await result, 3);
+            int score = await result;
+            totalScore += score;
 
             //Send next Question
             try
@@ -99,8 +110,8 @@ namespace Bot_Application1.Dialogs
 
         private async Task QuestionTieBreak5(IDialogContext context, IAwaitable<int> result)
         {
-            //Save Previous Score
-            //await SaveScoreTieBreak(await result, 4);
+            int score = await result;
+            totalScore += score;
 
             //Send next Question
             try
@@ -117,14 +128,23 @@ namespace Bot_Application1.Dialogs
         private async Task FarewellTieBreak(IDialogContext context, IAwaitable<int> result)
         {
             //Save Previous Score
-            //await SaveScoreTieBreak(await result, 5);
+            int score = await result;
+            totalScore += score;
+            await SaveScoreTieBreak();
 
             await context.PostAsync("Suerte!");
-           
             context.Done("");
             
         }
 
+        //SAVE DATA
+        private async Task SaveScoreTieBreak()
+        {
+            var groupentity = new TiebreakTableEntity(_groupName) { Score = totalScore };
+            await _dataAccess.StoreEntity(groupentity, "Tiebreak");
+        }
+
+        //FAIL MESSAGE
         private async Task FailMessage(IDialogContext context)
         {
             await context.PostAsync("Lo lamento, no te entendi. Intentemos de nuevo!");

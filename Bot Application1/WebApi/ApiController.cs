@@ -26,6 +26,14 @@ namespace Bot_Application1.WebApi
         }
 
         [AllowAnonymous]
+        [Route("GetWinner")]
+        [HttpGet]
+        public Group GetTieBreakWinner()
+        {
+            return _dataAccess.GetTieBreakWinner();
+        }
+
+        [AllowAnonymous]
         [Route("AuthenticationAdmin")]
         [HttpPost]
         public bool Processlogin([FromBody] User user)

@@ -47,6 +47,33 @@ namespace Bot_Application1.Storage
             return result;
         }
 
+        public Group GetTieBreakWinner()
+        {
+            var result = new List<Group>();
+            var groups = _storageManager.GetTieBreakGroups();
+
+            foreach (var g in groups)
+            {
+                var group = new Group
+                {
+                    Name = g.RowKey,
+                    TotalScore = g.Score,
+                    Time = Convert.ToDateTime(g.Timestamp.ToString()) 
+                };
+
+                result.Add(group);
+            }
+            var maxScore = result.OrderByDescending(g => g.TotalScore).First().TotalScore;
+
+            var groupsMax = result.Where(g => g.TotalScore == maxScore);
+            if (groupsMax.Count() > 1)
+            {
+                return groupsMax.OrderBy(g => g.Time).First();
+            }
+
+            return groupsMax.First();
+        }
+
         public bool login(string mail, string password)
         {
             var credentials = _storageManager.GetCredentials();

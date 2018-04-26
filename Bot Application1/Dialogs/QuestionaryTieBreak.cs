@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web;
 using Bot_Application1.Models;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
@@ -15,7 +12,7 @@ namespace Bot_Application1.Dialogs
     {
         private readonly Question _question;
 
-        private int score = 5;
+        private int _score = 5;
 
         public QuestionaryTieBreak(Question question)
         {
@@ -53,11 +50,11 @@ namespace Bot_Application1.Dialogs
             if (IsCorrect(message.Text))
             {
                 await context.PostAsync("Correcto!");
-                context.Done(score);
+                context.Done(_score);
             }
             else
             {
-                score --;
+                _score --;
                 await context.PostAsync("Incorrecto! Intentalo de nuevo:");
                 
                 context.Wait(this.AskAgain);
@@ -72,11 +69,11 @@ namespace Bot_Application1.Dialogs
             if (IsCorrect(message.Text))
             {
                 await context.PostAsync("Correcto!");
-                context.Done(score);
+                context.Done(_score);
             }
             else
             {
-                score--;
+                _score--;
                 await context.PostAsync("Incorrecto! Prueba otra vez:");
                 context.Wait(this.MessageReceivedAsync);
             }

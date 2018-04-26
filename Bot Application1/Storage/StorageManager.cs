@@ -71,6 +71,25 @@ namespace Bot_Application1.Storage
             return table.ExecuteQuery(query).ToList();
         }
 
+        public List<TiebreakTableEntity> GetTieBreakGroups()
+        {
+            //CloudStorageAccount
+            var storageAccount = CloudStorageAccount.Parse(
+                CloudConfigurationManager.GetSetting("StorageConnectionString"));
+
+            //CloudTableClient
+            var tableClient = storageAccount.CreateCloudTableClient();
+
+            //CloudTable
+            var table = tableClient.GetTableReference("Tiebreak");
+            table.CreateIfNotExists();
+
+            // Construct the query operation for all entities where PartitionKey="groupName".
+            var query = new TableQuery<TiebreakTableEntity>().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, "Group"));
+
+            return table.ExecuteQuery(query).ToList();
+        }
+
         public UserTableEntity GetCredentials()
         {
             //CloudStorageAccount

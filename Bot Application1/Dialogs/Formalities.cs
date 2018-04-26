@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Threading.Tasks;
+using Bot_Application1.Storage;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
 
@@ -9,7 +10,15 @@ namespace Bot_Application1.Dialogs
     [Serializable]
     public class Formalities : IDialog<string>
     {
+        private readonly IDataAccess _dataAccess;
+        private string _groupName;
         private int attempts = 3;
+
+        public Formalities(IDataAccess dataAccess, string groupName)
+        {
+            _dataAccess = dataAccess;
+            _groupName = groupName;
+        }
 
         public async Task StartAsync(IDialogContext context)
         {
@@ -54,7 +63,7 @@ namespace Bot_Application1.Dialogs
             }
             else if (message.Text.ToLower().Contains("desempate"))
             {
-                context.Call(new TieBreak(), FarewellTB);
+                context.Call(new TieBreak(_dataAccess, _groupName), FarewellTB);
             }
             /* Else, try again by re-prompting the user. */
             else

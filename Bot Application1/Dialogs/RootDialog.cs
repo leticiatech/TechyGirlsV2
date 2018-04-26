@@ -42,7 +42,7 @@ namespace Bot_Application1.Dialogs
             {
                 groupName = await result;
 
-                context.Call(new Formalities(), Question1);
+                context.Call(new Formalities(_dataAccess, groupName), Question1);
             }
             catch (TooManyAttemptsException)
             {
@@ -248,7 +248,7 @@ namespace Bot_Application1.Dialogs
             await context.PostAsync("Lo lamento, no te entendi. Intentemos de nuevo!");
         }
 
-        //FAIL DATA
+        //SAVE DATA
         private async Task SaveScore(int score, int question)
         {
             totalScore += score;
