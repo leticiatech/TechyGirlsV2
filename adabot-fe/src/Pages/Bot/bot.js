@@ -13,7 +13,7 @@ constructor(props) {
 
 goResults(e) {
   e.preventDefault();
-  this.props.history.replace("/admin/resultados");
+  this.props.history.replace("/admin/login");
 }
 
   render() {
