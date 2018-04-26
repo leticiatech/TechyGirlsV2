@@ -16,16 +16,15 @@
   height: 224px;
   object-fit: contain;
   margin: auto;
+
+  img{
+    max-width: 100%;
+  }
 }
 
 .login-user {
-  margin: 40px auto;
-  padding: 1px 70px;
-  width: 400px;
-
-  form {
-    margin: 50px 0;
-  }
+  margin: 30px auto;
+  width: 260px;
 
   .form-group {
     margin-bottom: 30px;
