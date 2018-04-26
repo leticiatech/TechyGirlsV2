@@ -82,6 +82,10 @@
                         font-size: 24px;
                     }
                 }
+
+                &.g-name{
+                    width: 180px;
+                }
              }
         }
     }
@@ -101,6 +105,13 @@
                 b{
                     font-size: 12px;
                 }
+            }
+            &.g-name{
+                display: block;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                width: 140px;
             }
         }
     }
@@ -141,6 +152,13 @@
 @media screen and (max-width: 420px) {
     .total-score{
         max-width: 190px;
+        .group-score{
+            span{
+                &.g-name{
+                    width: 84px;
+                }
+            }
+        }
         &.winner {
             max-width: 219px;
             margin-right: auto;
@@ -157,6 +175,10 @@
             } 
             .group-score{
                 font-size: 19px;
+
+                span.g-name{
+                    width: 100px;
+                }
             }
         }
     }

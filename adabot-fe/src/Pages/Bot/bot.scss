@@ -55,6 +55,21 @@
     text-decoration: underline;
     top: 10px;
     z-index: 1;
+
+    &.seeUntie{
+        top:30px;
+    }
+}
+.refresh-button{
+    background: url(../../assets/img/refresh-icon.svg) 0 0 no-repeat;
+    background-size: contain; 
+    border: none;
+    color: $white;
+    font-size: 13px;
+    margin: 20px auto 0;
+    padding-left: 25px;
+    position: relative;
+    z-index: 1;
 }
 .wc-message-wrapper{
     margin-bottom: 20px;
