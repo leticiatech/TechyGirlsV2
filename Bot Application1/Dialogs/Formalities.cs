@@ -52,6 +52,10 @@ namespace Bot_Application1.Dialogs
 
                 context.Done(message.Text);
             }
+            else if (message.Text.ToLower().Contains("desempate"))
+            {
+                context.Call(new TieBreak(), FarewellTB);
+            }
             /* Else, try again by re-prompting the user. */
             else
             {
@@ -69,6 +73,11 @@ namespace Bot_Application1.Dialogs
                     context.Fail(new TooManyAttemptsException("Disculpa, pero no entendi!"));
                 }
             }
+        }
+
+        private async Task FarewellTB(IDialogContext context, IAwaitable<string> result)
+        {
+            await context.PostAsync("Gracias por participar!");
         }
     }
 }
