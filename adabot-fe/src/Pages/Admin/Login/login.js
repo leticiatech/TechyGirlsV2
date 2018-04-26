@@ -49,9 +49,13 @@ class LoginAdminPage extends Component {
 
     auth.login(user)
     .then(response => {
-      auth.setAuthorizedUser(user);
-      this.setState({error: ""})
-      this.props.history.replace('/admin/resultados');
+      if (response.data) {
+        auth.setAuthorizedUser(user);
+        this.setState({error: ""})
+        this.props.history.replace('/admin/resultados');
+      } else {
+        this.setState({error: "El mail o la contraseña no son válidos"})
+      }
     })
     .catch(error => {
       this.setState({error: "Hubo un error, por favor vuelve a intentarlo"})
