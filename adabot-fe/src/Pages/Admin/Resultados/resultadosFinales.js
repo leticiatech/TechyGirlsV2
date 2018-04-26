@@ -7,9 +7,15 @@ class ResultadosFinalesAdminPage extends Component {
 
   constructor(props){
     super(props);
+    this.goBot = this.goBot.bind(this);
     this.state = {
       data:[]
     };
+  }
+
+  goBot(e) {
+    e.preventDefault();
+    this.props.history.replace('/bot');
   }
 
   loadScores() {
@@ -53,6 +59,7 @@ class ResultadosFinalesAdminPage extends Component {
 
       return (
       <div className="admin-page">
+      <button type="button" className="small-button" onClick={this.goBot}>Desempatar</button>
         <img src={finals} alt="Resultados Finales" title="Resultados Finales" />
         <h3>Creating <strong>Ada<em>bOT</em></strong></h3>
         <div className="res-wrapper">{groupScore}</div>
