@@ -52,11 +52,11 @@ class ResultadosAdminPage extends Component {
               </tr>
               <tr>
                 <td key={i} rowSpan="3" className="group-name">{item.name}</td>
-                <td><strong>{questionScores[0]}</strong>pts.</td>
-                <td><strong>{questionScores[1]}</strong>pts.</td>
-                <td><strong>{questionScores[2]}</strong>pts.</td>
-                <td><strong>{questionScores[3]}</strong>pts.</td>
-                <td><strong>{questionScores[4]}</strong>pts.</td>
+                <td className="points"><strong>{questionScores[0]}</strong>pts.</td>
+                <td className="points"><strong>{questionScores[1]}</strong>pts.</td>
+                <td className="points"><strong>{questionScores[2]}</strong>pts.</td>
+                <td className="points"><strong>{questionScores[3]}</strong>pts.</td>
+                <td className="points"><strong>{questionScores[4]}</strong>pts.</td>
               </tr>
               <tr>
                 <th>P.6</th>
@@ -66,11 +66,11 @@ class ResultadosAdminPage extends Component {
                 <th>P.10</th>
               </tr>
               <tr>
-                <td><strong>{questionScores[5]}</strong>pts.</td>
-                <td><strong>{questionScores[6]}</strong>pts.</td>
-                <td><strong>{questionScores[7]}</strong>pts.</td>
-                <td><strong>{questionScores[8]}</strong>pts.</td>
-                <td><strong>{questionScores[9]}</strong>pts.</td>
+                <td className="points"><strong>{questionScores[5]}</strong>pts.</td>
+                <td className="points"><strong>{questionScores[6]}</strong>pts.</td>
+                <td className="points"><strong>{questionScores[7]}</strong>pts.</td>
+                <td className="points"><strong>{questionScores[8]}</strong>pts.</td>
+                <td className="points"><strong>{questionScores[9]}</strong>pts.</td>
               </tr>
               </tbody>
           </table>

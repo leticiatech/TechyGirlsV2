@@ -28,6 +28,14 @@
             text-align: left;
             vertical-align: top;
             word-wrap: break-word;
+
+            &.points{
+                color: $primary-button;
+                strong {
+                    font-size: 14px;
+                    font-weight: 700;
+                }
+            }
         }
         th{
             padding-top: 10px;
