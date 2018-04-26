@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import finals from '../../../assets/img/resultados-finales.png';
+import winner from '../../../assets/img/ganador-final.png';
 import techy from '../../../assets/img/logo-techy-sm.png';
 import './resultadosFinales.css';
 
@@ -36,7 +36,7 @@ class DesempateAdminPage extends Component {
   render() {
       return (
       <div className="admin-page">
-        <img src={finals} alt="Resultados Finales" title="Resultados Finales" />
+        <img src={winner} alt="Ganador Final" title="Ganador Final" />
         <h3>Creating <strong>Ada<em>bOT</em></strong></h3>
         <div className="res-wrapper">
         <div className="total-score odd winner">
