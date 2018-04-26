@@ -12,7 +12,7 @@ class ResultadosFinalesAdminPage extends Component {
     };
   }
 
-  loadData() {
+  loadScores() {
 		fetch('http://techygirlsbot.azurewebsites.net/api/getgroups')
 			.then(response => response.json())
 			.then(data => {
@@ -21,25 +21,27 @@ class ResultadosFinalesAdminPage extends Component {
         	});
 			this.setState({data: data })
 		})
-			.catch(err => console.error(this.props.url, err.toString()))
+			.catch(err => {
+        this.setState({error: "Hubo un error, por favor vuelve a intentarlo"})
+      })
   }
   
   componentDidMount() {
-    this.loadData()
+    this.loadScores()
   }  
 
   render() {
     const groupScore = this.state.data.map((item, i) => {
-      let myClassName = "";
+      let alternateClass = "";
       if(i == 0){
-        myClassName = "total-score odd winner";
+        alternateClass = "total-score odd winner";
       }
       else{
         const isOdd = i % 2 ? "even" : "odd";
-        myClassName = "total-score " + isOdd;
+        alternateClass = "total-score " + isOdd;
       }
       return(
-        <div key={i} className={myClassName}>
+        <div key={i} className={alternateClass}>
           <span>{i+1}</span>
           <div className="group-score">
             <span className="g-name">{item.name}</span>
@@ -53,9 +55,7 @@ class ResultadosFinalesAdminPage extends Component {
       <div className="admin-page">
         <img src={finals} alt="Resultados Finales" title="Resultados Finales" />
         <h3>Creating <strong>Ada<em>bOT</em></strong></h3>
-        <div className="res-wrapper">
-        	{groupScore}
-        </div>
+        <div className="res-wrapper">{groupScore}</div>
         <img id="logo-sm" src={techy} alt="Techy por el día en Onetree" title="Techy por el día en Onetree" /> 
       </div>
     );

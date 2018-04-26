@@ -17,21 +17,23 @@ class ResultadosAdminPage extends Component {
     this.props.history.replace('/admin/resultadosFinales');
   }
 
-  loadData() {
+  loadScores() {
 		fetch('http://techygirlsbot.azurewebsites.net/api/getgroups')
 			.then(response => response.json())
 			.then(data => {
 				this.setState({data: data })
 		})
-			.catch(err => console.error(this.props.url, err.toString()))
+			.catch(err => {
+        this.setState({error: "Hubo un error, por favor vuelve a intentarlo"})
+      })
 	}
   
   componentDidMount() {
-    this.loadData()
+    this.loadScores()
   }  
 
   render() {
-    const groupName = this.state.data.map((item, i) => {
+    const groupPoints = this.state.data.map((item, i) => {
         let questionScores = new Array(10);
         item.questionScores.forEach(element => {
           questionScores[parseInt(element.question, 10)-1] = element.score;
@@ -80,7 +82,7 @@ class ResultadosAdminPage extends Component {
       <div className="admin-page">
         <img src={partials} alt="Resultados Parciales" title="Resultados Parciales" />
         <h3>Creating <strong>Ada<em>bOT</em></strong></h3>
-        {groupName}
+        {groupPoints}
         <button type="button" className="secondary-button" onClick={this.end}>Finalizar juego</button>
         <img id="logo-sm" src={techy} alt="Techy por el día en Onetree" title="Techy por el día en Onetree" /> 
       </div>
