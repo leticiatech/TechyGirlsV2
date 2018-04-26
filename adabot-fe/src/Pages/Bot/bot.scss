@@ -3,13 +3,14 @@
 
 .wc-chatview-panel{
     margin: 0 auto;
-    max-width: 375px;
+    max-width: 500px;
 }
 .wc-header,
 .wc-message-from {
   display: none;
 }
 .wc-message-groups{
+    bottom: 64px;
     overflow-y: auto;
     padding: 0px 30px 10px;
     top: 200px;
