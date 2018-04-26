@@ -1,0 +1,121 @@
+.res-wrapper {
+  margin: 30px auto;
+  max-width: 500px; }
+
+.group-score {
+  color: #55a4ae; }
+  .winner .group-score {
+    color: #ffffff; }
+
+.total-score {
+  background-image: linear-gradient(13deg, #ffffff, rgba(255, 255, 255, 0.8));
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
+  height: 48px;
+  margin: 30px auto;
+  max-width: 256px;
+  padding: 8px 32px;
+  position: relative;
+  text-align: left; }
+  .total-score > span {
+    background-image: linear-gradient(7deg, #ebebeb, #ffffff);
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    color: #55a4ae;
+    font-size: 32px;
+    font-weight: 700;
+    height: 64px;
+    line-height: 60px;
+    position: absolute;
+    text-align: center;
+    top: -8px;
+    vertical-align: middle;
+    width: 64px; }
+  .total-score.odd {
+    border-radius: 0 8px 8px 0; }
+    .total-score.odd > span {
+      left: -48px; }
+  .total-score.even {
+    border-radius: 8px 0 0 8px; }
+    .total-score.even > span {
+      right: -48px; }
+  .total-score.winner {
+    background-color: #55a4ae;
+    background-image: none;
+    border: solid 4px #71e1ef;
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
+    height: 64px;
+    margin: 80px 10% 50px auto;
+    max-width: 340px; }
+    .total-score.winner > span {
+      background-color: #55a4ae;
+      background-image: none;
+      border: 8px solid #71e1ef;
+      box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.5);
+      color: #ffffff;
+      font-size: 64px;
+      height: 128px;
+      left: -118px;
+      line-height: 110px;
+      top: -38px;
+      width: 128px; }
+    .total-score.winner .group-score {
+      font-size: 32px; }
+      .total-score.winner .group-score span {
+        line-height: 40px; }
+        .total-score.winner .group-score span.g-score b {
+          font-size: 24px; }
+  .total-score .group-score {
+    display: table;
+    font-size: 16px;
+    font-weight: 700;
+    width: 100%; }
+    .total-score .group-score span {
+      display: table-cell;
+      line-height: 32px; }
+      .total-score .group-score span.g-score {
+        text-align: right; }
+        .total-score .group-score span.g-score b {
+          font-size: 12px; }
+
+@media screen and (max-width: 560px) {
+  .total-score.winner {
+    max-width: 289px; } }
+
+@media screen and (max-width: 470px) {
+  .total-score.winner {
+    max-width: 259px; }
+    .total-score.winner > span {
+      font-size: 54px;
+      height: 108px;
+      left: -88px;
+      line-height: 88px;
+      top: -28px;
+      width: 108px; }
+    .total-score.winner .group-score {
+      font-size: 24px; }
+      .total-score.winner .group-score span {
+        line-height: 40px; }
+        .total-score.winner .group-score span.g-score b {
+          font-size: 18px; } }
+
+@media screen and (max-width: 420px) {
+  .total-score {
+    max-width: 190px; }
+    .total-score.winner {
+      max-width: 219px;
+      margin-right: auto;
+      padding: 8px 16px 8px 32px;
+      margin-bottom: 40px; }
+      .total-score.winner > span {
+        font-size: 44px;
+        height: 88px;
+        left: -68px;
+        line-height: 68px;
+        top: -18px;
+        width: 88px; }
+      .total-score.winner .group-score {
+        font-size: 19px; } }
+
+@media screen and (max-width: 370px) {
+  .total-score.winner {
+    margin-right: 0; } }

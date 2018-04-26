@@ -1,0 +1,26 @@
+.res-page {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 40%;
+  transform: translate(0, -50%); }
+  .res-page .ver-resultados {
+    margin-top: 60px; }
+
+.btn-admin {
+  width: 320px;
+  height: 64px;
+  border-radius: 8px;
+  background-color: white;
+  color: #55a4ae;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer; }
+  .btn-admin:hover {
+    background-color: white;
+    color: #43858d; }
+  .btn-admin:focus, .btn-admin:focus:active {
+    background: white;
+    box-shadow: none;
+    color: #43858d;
+    outline: none; }
