@@ -25,7 +25,7 @@ namespace Bot_Application1.Storage
             table.CreateIfNotExists();
 
             //TableOperation
-            var insertOperation = TableOperation.Insert(entity);
+            var insertOperation = TableOperation.InsertOrReplace(entity);
 
             await table.ExecuteAsync(insertOperation);
 
